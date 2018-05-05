@@ -24,7 +24,7 @@ export class LinkdevicePage {
 
   linkDevice() {
     console.log("I am about to Link Device");
-    this.navCtrl.setRoot("");
+    this.navCtrl.setRoot("RiderdashboardPage");
   }
 
 }
