@@ -22,4 +22,9 @@ export class ViewrequestPage {
     console.log('ionViewDidLoad ViewrequestPage');
   }
 
+  scanQR(){
+    console.log("I am about to scan QR Code");
+
+  }
+
 }
