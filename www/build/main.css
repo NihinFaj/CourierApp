@@ -25677,3 +25677,21 @@ ion-navbar.toolbar {
   min-height: calc(46px + constant(safe-area-inset-bottom));
   min-height: calc(46px + env(safe-area-inset-bottom));
 }
+
+page-successpage .confirmation-msg {
+  margin-top: 20px;
+}
+
+page-successpage .confirmation-msg .bigText {
+  font-size: 1.5rem;
+  line-height: 1.8rem;
+  letter-spacing: 0.5;
+  color: #3C3C3C;
+}
+
+page-successpage .confirmBtn-wrapper {
+  position: fixed;
+  width: 100%;
+  left: 0;
+  bottom: 100px;
+}

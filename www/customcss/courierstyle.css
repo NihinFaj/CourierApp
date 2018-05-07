@@ -2,6 +2,7 @@
 html {
   -webkit-font-smoothing: antialiased;
   font-size: 16px !important;
+  font-family: 'Nunito', sans-serif !important;
 }
 
 body {
@@ -155,12 +156,14 @@ body {
   font-size: 0.75rem;
   color: #707070;
   font-weight: 600;
+  margin: 0;
 }
 
 .cardContent .listGroup .cardContent-list .list-content {
   font-size: 0.87rem;
   font-weight: 600;
   color: #323232;
+  margin: 0;
 }
 
 .accept-wrapper {
@@ -207,7 +210,7 @@ body {
 }
 
 .form-group .form-control {
-  border: 1px solid #a3a3a3;
+  border: 1px solid #d2d2d2;
   height: 40px;
   width: 100%;
   padding-left: 10px;
@@ -219,10 +222,19 @@ body {
   color: #4e4e4e;
 }
 
-.form-group .input-code {
+/* .form-group .input-code {
   margin-top: 10px;
+} */
+.form-group .input-group {
+  display: flex;
+  align-items: flex-start;
 }
-
+.input-group .btn {
+  height: 40px;
+  border: 1px solid #DD4F05;
+  background-color: #DD4F05;
+  color: #fff;
+}
 footer {
   position: fixed;
   width: 100%;
@@ -275,10 +287,20 @@ footer {
   border-radius: 0;
 }
 
-.btn-group .btn-footer.btn-accent {
+.btn-accent {
   border-radius: 0;
   background-color: #F67633;
   color: #ffffff;
+}
+
+.btn-secondary {
+  background-color: #ffffff;
+  color: #DD4F05;
+  border: 1px solid #DD4F05;
+  padding-left: 40px;
+  padding-right: 40px;
+  font-size: 0.8rem;
+  letter-spacing: 0.5;
 }
 
 .delivery-address {
@@ -301,6 +323,10 @@ footer {
 
 .address-details {
   text-align: left;
+}
+
+.address-details .thickText {
+  margin-top: 0;
 }
 
 .toolbar-title-md {

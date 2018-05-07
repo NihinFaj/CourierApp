@@ -52,4 +52,9 @@ export class ViewrequestPage {
 
   }
 
+  viewRequest() {
+    console.log('view request successful');
+    this.navCtrl.setRoot("SuccesspagePage");
+  }
+
 }

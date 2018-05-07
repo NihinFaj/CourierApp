@@ -1,14 +1,14 @@
 webpackJsonp([1],{
 
-/***/ 271:
+/***/ 272:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RiderdashboardPageModule", function() { return RiderdashboardPageModule; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SuccesspagePageModule", function() { return SuccesspagePageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(49);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__riderdashboard__ = __webpack_require__(274);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__successpage__ = __webpack_require__(276);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -18,31 +18,31 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
-var RiderdashboardPageModule = /** @class */ (function () {
-    function RiderdashboardPageModule() {
+var SuccesspagePageModule = /** @class */ (function () {
+    function SuccesspagePageModule() {
     }
-    RiderdashboardPageModule = __decorate([
+    SuccesspagePageModule = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["I" /* NgModule */])({
             declarations: [
-                __WEBPACK_IMPORTED_MODULE_2__riderdashboard__["a" /* RiderdashboardPage */],
+                __WEBPACK_IMPORTED_MODULE_2__successpage__["a" /* SuccesspagePage */],
             ],
             imports: [
-                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__riderdashboard__["a" /* RiderdashboardPage */]),
+                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__successpage__["a" /* SuccesspagePage */]),
             ],
         })
-    ], RiderdashboardPageModule);
-    return RiderdashboardPageModule;
+    ], SuccesspagePageModule);
+    return SuccesspagePageModule;
 }());
 
-//# sourceMappingURL=riderdashboard.module.js.map
+//# sourceMappingURL=successpage.module.js.map
 
 /***/ }),
 
-/***/ 274:
+/***/ 276:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return RiderdashboardPage; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SuccesspagePage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(49);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -57,32 +57,29 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 /**
- * Generated class for the RiderdashboardPage page.
+ * Generated class for the SuccesspagePage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
  */
-var RiderdashboardPage = /** @class */ (function () {
-    function RiderdashboardPage(navCtrl, navParams) {
+var SuccesspagePage = /** @class */ (function () {
+    function SuccesspagePage(navCtrl, navParams) {
         this.navCtrl = navCtrl;
         this.navParams = navParams;
     }
-    RiderdashboardPage.prototype.ionViewDidLoad = function () {
-        console.log('ionViewDidLoad RiderdashboardPage');
+    SuccesspagePage.prototype.ionViewDidLoad = function () {
+        console.log('ionViewDidLoad SuccesspagePage');
     };
-    RiderdashboardPage.prototype.acceptRequest = function () {
-        this.navCtrl.setRoot("ViewrequestPage");
-    };
-    RiderdashboardPage = __decorate([
+    SuccesspagePage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-riderdashboard',template:/*ion-inline-start:"/Users/appdevmacbook2/Documents/courier-app/app/src/pages/riderdashboard/riderdashboard.html"*/'<!--\n  Generated template for the RiderdashboardPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n    <ion-title>Today\'s Request</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n  <div class="app-wrapper">\n    <!-- <header class="header">\n        <div class="title-wrapper">\n            <h1 class="sm-title">Today\'s Request</h1>\n        </div>\n    </header> -->\n\n    <div class="cards-wrapper mt-30">\n\n       <div class="card requestCard">\n           <div class="cardContent">\n               <div class="listGroup">\n                    <div class="cardContent-list">\n                        <p class="list-title">Delivery type:</p>\n                        <p class="list-content">Within Lagos</p>\n                    </div>\n                    <div class="cardContent-list">\n                        <p class="list-title">No of items:</p>\n                        <p class="list-content">3</p>\n                    </div>\n               </div>\n               <div class="listGroup">\n                    <div class="cardContent-list">\n                        <p class="list-title">Initiating Officer:</p>\n                        <p class="list-content">Motolani Oyinloye</p>\n                    </div>\n                    <div class="cardContent-list">\n                        <p class="list-title">Pick-up Branch:</p>\n                        <p class="list-content">635, Akin Adesola street, VI, Lagos</p>\n                    </div>\n               </div>\n               <div class="listGroup">\n                    <div class="cardContent-list">\n                        <p class="list-title">Item Type:</p>\n                        <p class="list-content">Parcel</p>\n                    </div>\n                    <div class="cardContent-list">\n                        <p class="list-title">Drop-off Branch:</p>\n                        <p class="list-content">Zone 2, wuse, Gwadalaga, Abuja</p>\n                    </div>\n               </div>\n           </div>\n           <div class="accept-wrapper" (click)="acceptRequest()">\n               <a class="acceptRequest">accept request</a>\n           </div>\n       </div>\n\n\n       <div class="card requestCard">\n          <div class="cardContent">\n              <div class="listGroup">\n                   <div class="cardContent-list">\n                       <p class="list-title">Delivery type:</p>\n                       <p class="list-content">Within Lagos</p>\n                   </div>\n                   <div class="cardContent-list">\n                       <p class="list-title">No of items:</p>\n                       <p class="list-content">3</p>\n                   </div>\n              </div>\n              <div class="listGroup">\n                   <div class="cardContent-list">\n                       <p class="list-title">Initiating Officer:</p>\n                       <p class="list-content">Motolani Oyinloye</p>\n                   </div>\n                   <div class="cardContent-list">\n                       <p class="list-title">Pick-up Branch:</p>\n                       <p class="list-content">635, Akin Adesola street, VI, Lagos</p>\n                   </div>\n              </div>\n              <div class="listGroup">\n                   <div class="cardContent-list">\n                       <p class="list-title">Item Type:</p>\n                       <p class="list-content">Parcel</p>\n                   </div>\n                   <div class="cardContent-list">\n                       <p class="list-title">Drop-off Branch:</p>\n                       <p class="list-content">Zone 2, wuse, Gwadalaga, Abuja</p>\n                   </div>\n              </div>\n          </div>\n          <div class="accept-wrapper">\n              <a class="acceptRequest">accept request</a>\n          </div>\n      </div>\n      \n\n       <div class="card requestCard">\n            <div class="cardContent">\n                <div class="listGroup">\n                    <div class="cardContent-list">\n                        <p class="list-title">Delivery type:</p>\n                        <p class="list-content">Outside Lagos</p>\n                    </div>\n                    <div class="cardContent-list">\n                        <p class="list-title">No of items:</p>\n                        <p class="list-content">2</p>\n                    </div>\n                </div>\n                <div class="listGroup">\n                    <div class="cardContent-list">\n                        <p class="list-title">Initiating Officer:</p>\n                        <p class="list-content">Faith Afolabi-Jumbo</p>\n                    </div>\n                    <div class="cardContent-list">\n                        <p class="list-title">Pick-up Branch:</p>\n                        <p class="list-content">635, Akin Adesola street, VI, Lagos</p>\n                    </div>\n                </div>\n                <div class="listGroup">\n                    <div class="cardContent-list">\n                        <p class="list-title">Item Type:</p>\n                        <p class="list-content">Parcel</p>\n                    </div>\n                    <div class="cardContent-list">\n                        <p class="list-title">Drop-off Branch:</p>\n                        <p class="list-content">Zone 2, wuse, Gwadalaga, Abuja</p>\n                    </div>\n                </div>\n            </div>\n            <div class="accept-wrapper">\n                <a class="acceptRequest">accept request</a>\n            </div>\n        </div>\n    </div>\n\n    <footer>\n        <div class="btn-group">\n            <button class="btn btn-footer btn-primary">Scan QR Code</button>\n            <button class="btn btn-footer btn-accent">Input Barcode</button>\n        </div>\n    </footer>\n</div>\n</ion-content>\n'/*ion-inline-end:"/Users/appdevmacbook2/Documents/courier-app/app/src/pages/riderdashboard/riderdashboard.html"*/,
+            selector: 'page-successpage',template:/*ion-inline-start:"/Users/appdevmacbook2/Documents/courier-app/app/src/pages/successpage/successpage.html"*/'<!--\n  Generated template for the SuccesspagePage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n    <ion-title>successpage</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n  <div class="app-wrapper">\n    <div class="confirmation-msg">\n      <h1 class="bigText">Package collected successfully!</h1>\n    </div>\n    <div class="confirmation-icon mt-30">\n        <img src="../../assets/imgs/raise-hand.png" class="roundIcon-bg">\n    </div>\n    <div class="confirmBtn-wrapper">\n      <button class="btn btn-half btn-secondary">Close</button>\n    </div>\n  </div>\n</ion-content>\n'/*ion-inline-end:"/Users/appdevmacbook2/Documents/courier-app/app/src/pages/successpage/successpage.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavParams */]])
-    ], RiderdashboardPage);
-    return RiderdashboardPage;
+    ], SuccesspagePage);
+    return SuccesspagePage;
 }());
 
-//# sourceMappingURL=riderdashboard.js.map
+//# sourceMappingURL=successpage.js.map
 
 /***/ })
 

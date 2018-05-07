@@ -1,4 +1,4 @@
-webpackJsonp([3],{
+webpackJsonp([4],{
 
 /***/ 109:
 /***/ (function(module, exports) {
@@ -23,14 +23,18 @@ webpackEmptyAsyncContext.id = 109;
 var map = {
 	"../pages/linkdevice/linkdevice.module": [
 		270,
-		2
+		3
 	],
 	"../pages/riderdashboard/riderdashboard.module": [
 		271,
+		2
+	],
+	"../pages/successpage/successpage.module": [
+		272,
 		1
 	],
 	"../pages/viewrequest/viewrequest.module": [
-		272,
+		273,
 		0
 	]
 };
@@ -145,6 +149,7 @@ var AppModule = /** @class */ (function () {
                     links: [
                         { loadChildren: '../pages/linkdevice/linkdevice.module#LinkdevicePageModule', name: 'LinkdevicePage', segment: 'linkdevice', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/riderdashboard/riderdashboard.module#RiderdashboardPageModule', name: 'RiderdashboardPage', segment: 'riderdashboard', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/successpage/successpage.module#SuccesspagePageModule', name: 'SuccesspagePage', segment: 'successpage', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/viewrequest/viewrequest.module#ViewrequestPageModule', name: 'ViewrequestPage', segment: 'viewrequest', priority: 'low', defaultHistory: [] }
                     ]
                 })
