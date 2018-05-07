@@ -16,8 +16,31 @@ body {
 .app-wrapper {
   margin-right: auto;
   margin-left: auto;
-  width: 330px;
   text-align: center;
+}
+
+@media (min-width: 320px) {
+  .app-wrapper {
+    width: 310px;
+  }
+}
+
+@media (min-width: 360px) {
+  .app-wrapper {
+    width: 340px;
+  }
+}
+
+@media (min-width: 420px) {
+  .app-wrapper {
+    width: 400px;
+  }
+}
+
+@media (min-width: 640px) {
+  .app-wrapper {
+    width: 610px;
+  }
 }
 
 @font-face {
@@ -110,6 +133,11 @@ body {
 
 .title-wrapper {
   flex-grow: 2;
+  text-align: center;
+}
+
+.ion-title {
+  text-align: center;
 }
 
 .title-wrapper .title {
@@ -198,7 +226,7 @@ body {
 }
 
 .form-group select {
-  border: 1px solid #d2d2d2;
+  border: 1px solid #f5f5f5;
   height: 40px;
   width: 100%;
   padding-left: 10px;
@@ -210,9 +238,10 @@ body {
 }
 
 .form-group .form-control {
-  border: 1px solid #d2d2d2;
+  border: 1px solid #f5f5f5;
   height: 40px;
-  width: 100%;
+  max-width: 100%;
+  padding: 10px;
   padding-left: 10px;
   background-color: #ffffff;
   border-radius: 0;
@@ -220,6 +249,7 @@ body {
   background-color: #ECECEC;
   font-size: 0.9rem;
   color: #4e4e4e;
+  text-align: left;
 }
 
 /* .form-group .input-code {
@@ -333,3 +363,26 @@ footer {
   font-size: 1.2rem;
 }
 /*# sourceMappingURL=main.css.map */
+
+.toolbar-content.toolbar-content-md {
+  display: flex;
+  align-items: center;
+}
+
+.backBtn-wrapper {
+  width: 25px;
+  height: 20px;
+}
+.backBtn-wrapper .icon {
+  width: 25px;
+  height: 20px;
+  display: block;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.icon-close {
+  background-image: url(../assets/icon/Close.png);
+}
+.icon-back {
+  background-image: url(../assets/icon/back.png);
+}

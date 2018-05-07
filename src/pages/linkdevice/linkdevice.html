@@ -6,9 +6,12 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>Link Device</ion-title>
-  </ion-navbar>
+    <ion-navbar>
+        <div class="backBtn-wrapper">
+            <span class="icon icon-back"></span>
+        </div>
+        <ion-title class="ion-title">Link device</ion-title>
+    </ion-navbar>
 
 </ion-header>
 
@@ -24,9 +27,9 @@
         </div>
     </header>
 
-    <div class="forms-wrapper mt-70">
+    <div class="forms-wrapper mt-20">
         <p class="msg-prompt">This mobile device will be linked to your account.</p>
-        <div class="mt-50">
+        <div class="mt-30">
             <button class="btn btn-primary" (click)="linkDevice()">Link device</button>
         </div>
     </div>

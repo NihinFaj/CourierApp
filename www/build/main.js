@@ -1,4 +1,4 @@
-webpackJsonp([4],{
+webpackJsonp([5],{
 
 /***/ 109:
 /***/ (function(module, exports) {
@@ -23,18 +23,22 @@ webpackEmptyAsyncContext.id = 109;
 var map = {
 	"../pages/linkdevice/linkdevice.module": [
 		270,
+		4
+	],
+	"../pages/mailroomdashboard/mailroomdashboard.module": [
+		271,
 		3
 	],
 	"../pages/riderdashboard/riderdashboard.module": [
-		271,
+		272,
 		2
 	],
 	"../pages/successpage/successpage.module": [
-		272,
+		273,
 		1
 	],
 	"../pages/viewrequest/viewrequest.module": [
-		273,
+		274,
 		0
 	]
 };
@@ -82,7 +86,7 @@ var HomePage = /** @class */ (function () {
     };
     HomePage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-home',template:/*ion-inline-start:"/Users/appdevmacbook2/Documents/courier-app/app/src/pages/home/home.html"*/'<ion-header>\n  <!-- <ion-navbar>\n    <ion-title>\n      Courier App\n    </ion-title>\n  </ion-navbar> -->\n</ion-header>\n\n<ion-content  style="background-color:white">\n\n  <div class="app-wrapper">\n    <header class="header">\n        <div class="title-wrapper">\n            <h1 class="title">Courier Delivery</h1>\n        </div>\n    </header>\n\n    <div class="forms-wrapper mt-100">\n        <h4 class="signinPrompt">Sign in here</h4>\n\n        <form class="mt-30">\n            <div class="form-group">\n                <select>\n                    <option>Select user type</option>\n                    <option>Dispatch rider</option>\n                    <option>Mailroom officer</option>\n                </select>\n            </div>\n            <div class="form-group">\n                <select>\n                    <option>Select your name</option>\n                    <option>Femi Oke</option>\n                    <option>Tunde Chuks</option>\n                </select>\n            </div>\n            <button class="btn btn-primary" (click)="registerUser()">Sign in</button>\n        </form>\n    </div>\n</div>\n</ion-content>\n'/*ion-inline-end:"/Users/appdevmacbook2/Documents/courier-app/app/src/pages/home/home.html"*/
+            selector: 'page-home',template:/*ion-inline-start:"/Users/appdevmacbook2/Documents/courier-app/app/src/pages/home/home.html"*/'<!-- <ion-header>\n  <ion-navbar>\n    <ion-title>\n      Courier App\n    </ion-title>\n  </ion-navbar>\n</ion-header> -->\n\n<ion-content  style="background-color:white">\n\n  <div class="app-wrapper">\n    <header class="header">\n        <div class="title-wrapper">\n            <h1 class="title">Courier Delivery</h1>\n        </div>\n    </header>\n\n    <div class="forms-wrapper mt-100">\n        <h4 class="signinPrompt">Sign in here</h4>\n\n        <form class="mt-30">\n            <div class="form-group">\n                <ion-select class="form-control" placeholder="Select user type">\n                    <ion-option>Dispatch rider</ion-option>\n                    <ion-option>Mailroom officer</ion-option>\n                </ion-select>\n            </div>\n            <div class="form-group">\n                <ion-select class="form-control" placeholder="Select your name">\n                    <ion-option>Femi Oke</ion-option>\n                    <ion-option>Tunde Chuks</ion-option>\n                </ion-select>\n            </div>\n            <button class="btn btn-primary" (click)="registerUser()">Sign in</button>\n        </form>\n    </div>\n</div>\n</ion-content>\n'/*ion-inline-end:"/Users/appdevmacbook2/Documents/courier-app/app/src/pages/home/home.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */]])
     ], HomePage);
@@ -148,6 +152,7 @@ var AppModule = /** @class */ (function () {
                 __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["c" /* IonicModule */].forRoot(__WEBPACK_IMPORTED_MODULE_5__app_component__["a" /* MyApp */], {}, {
                     links: [
                         { loadChildren: '../pages/linkdevice/linkdevice.module#LinkdevicePageModule', name: 'LinkdevicePage', segment: 'linkdevice', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/mailroomdashboard/mailroomdashboard.module#MailroomdashboardPageModule', name: 'MailroomdashboardPage', segment: 'mailroomdashboard', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/riderdashboard/riderdashboard.module#RiderdashboardPageModule', name: 'RiderdashboardPage', segment: 'riderdashboard', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/successpage/successpage.module#SuccesspagePageModule', name: 'SuccesspagePage', segment: 'successpage', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/viewrequest/viewrequest.module#ViewrequestPageModule', name: 'ViewrequestPage', segment: 'viewrequest', priority: 'low', defaultHistory: [] }

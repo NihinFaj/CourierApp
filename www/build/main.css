@@ -25685,7 +25685,7 @@ page-successpage .confirmation-msg {
 page-successpage .confirmation-msg .bigText {
   font-size: 1.5rem;
   line-height: 1.8rem;
-  letter-spacing: 0.5;
+  letter-spacing: 0.5px;
   color: #3C3C3C;
 }
 
@@ -25693,5 +25693,5 @@ page-successpage .confirmBtn-wrapper {
   position: fixed;
   width: 100%;
   left: 0;
-  bottom: 100px;
+  bottom: 200px;
 }
