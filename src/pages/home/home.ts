@@ -16,6 +16,7 @@ export class HomePage {
   registerUser() {
     console.log("I am about to go Link Device Page")
     this.courierProvider.presentLoadingCustom();
+    console.log("Just called the loader")    
     this.navCtrl.setRoot("LinkdevicePage");
   }
 
