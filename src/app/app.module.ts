@@ -7,6 +7,8 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { QRScanner, QRScannerStatus } from '@ionic-native/qr-scanner';
+import { CourierproviderProvider } from '../providers/courierprovider/courierprovider';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -15,7 +17,8 @@ import { QRScanner, QRScannerStatus } from '@ionic-native/qr-scanner';
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    HttpClientModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -26,7 +29,8 @@ import { QRScanner, QRScannerStatus } from '@ionic-native/qr-scanner';
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    QRScanner
+    QRScanner,
+    CourierproviderProvider
   ]
 })
 export class AppModule {}

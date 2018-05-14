@@ -22,4 +22,9 @@ export class SuccesspagePage {
     console.log('ionViewDidLoad SuccesspagePage');
   }
 
+  goToDashboard(){
+    console.log("I was succesful, going back to Dashboard");
+    this.navCtrl.setRoot("RiderdashboardPage");
+  }
+
 }
