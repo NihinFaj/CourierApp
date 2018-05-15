@@ -10,7 +10,11 @@ import { CourierproviderProvider } from '../../providers/courierprovider/courier
 export class HomePage {
 
   constructor(public navCtrl: NavController, public courierProvider: CourierproviderProvider) {
+   
+  }
 
+  getNames(){
+    console.log("I am about to call names API");
   }
 
   registerUser() {

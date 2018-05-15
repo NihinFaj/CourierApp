@@ -46,22 +46,4 @@ export class CourierproviderProvider {
   
     loading.present();
   }
-
-  // presentLoadingText() {
-  //   let loading = this.loadingCtrl.create({
-  //     spinner: 'hide',
-  //     content: 'Loading Please Wait...'
-  //   });
-  
-  //   loading.present();
-  
-  //   setTimeout(() => {
-  //     this.nav.push(LinkdevicePage);
-  //   }, 1000);
-  
-  //   setTimeout(() => {
-  //     loading.dismiss();
-  //   }, 5000);
-  // }
-
 }
