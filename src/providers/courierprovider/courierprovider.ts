@@ -36,7 +36,9 @@ export class CourierproviderProvider {
       //     <div class="custom-spinner-box"></div>
       //   </div>`,
       content: `
-          <div class="custom-spinner-box"></div>`,
+      <div class="custom-spinner-container">
+           <div class="custom-spinner-box"></div>
+          </div>`,
       duration: 5000
     });
   
