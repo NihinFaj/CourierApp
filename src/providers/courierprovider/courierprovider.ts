@@ -48,4 +48,15 @@ export class CourierproviderProvider {
   
     loading.present();
   }
+
+  callService(url){
+    return new Promise((resolve, reject) => {
+      this.http.post(url, null)
+        .subscribe(res => {
+          resolve(res);
+        }, (err) => {
+          reject(err);
+        });
+    });
+  }
 }

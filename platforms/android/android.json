@@ -52,7 +52,8 @@
               "xml": "<uses-feature android:name=\"android.hardware.camera.front\" android:required=\"false\" />",
               "count": 1
             }
-          ]
+          ],
+          "/manifest": []
         }
       }
     }

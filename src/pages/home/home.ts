@@ -13,15 +13,25 @@ export class HomePage {
    
   }
 
-  getNames(){
-    console.log("I am about to call names API");
-  }
+  // registerUser() {
+  //   console.log("I am about to go Link Device Page")
+  //   this.courierProvider.presentLoadingCustom();
+  //   console.log("Just called the loader")    
+  //   this.navCtrl.setRoot("LinkdevicePage");
+  // }
+
+  apiURL = 'http://gtmobile.gtbank.com/CourierAppAPI/api/Courier/get-all-names';
 
   registerUser() {
-    console.log("I am about to go Link Device Page")
-    this.courierProvider.presentLoadingCustom();
-    console.log("Just called the loader")    
-    this.navCtrl.setRoot("LinkdevicePage");
+    this.courierProvider.callService(this.apiURL)
+    .then((result) => {
+      console.log("Call entered success");
+      console.log(result)
+    }, (err) => {
+      console.log("Call entered exception");      
+      console.log(err);
+    }
+  );
   }
 
 }

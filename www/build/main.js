@@ -82,25 +82,31 @@ var HomePage = /** @class */ (function () {
     function HomePage(navCtrl, courierProvider) {
         this.navCtrl = navCtrl;
         this.courierProvider = courierProvider;
+        // registerUser() {
+        //   console.log("I am about to go Link Device Page")
+        //   this.courierProvider.presentLoadingCustom();
+        //   console.log("Just called the loader")    
+        //   this.navCtrl.setRoot("LinkdevicePage");
+        // }
+        this.apiURL = 'http://gtmobile.gtbank.com/CourierAppAPI/api/Courier/get-all-names';
     }
-    HomePage.prototype.getNames = function () {
-        console.log("I am about to call names API");
-    };
-    // this.getNames();
     HomePage.prototype.registerUser = function () {
-        console.log("I am about to go Link Device Page");
-        this.courierProvider.presentLoadingCustom();
-        console.log("Just called the loader");
-        this.navCtrl.setRoot("LinkdevicePage");
+        this.courierProvider.callService(this.apiURL)
+            .then(function (result) {
+            console.log("Call entered success");
+            console.log(result);
+        }, function (err) {
+            console.log("Call entered exception");
+            console.log(err);
+        });
     };
     HomePage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
             selector: 'page-home',template:/*ion-inline-start:"/Users/appdevmac1/ionic-projects/CourierApp/src/pages/home/home.html"*/'<!-- <ion-header>\n  <ion-navbar>\n    <ion-title>\n      Courier App\n    </ion-title>\n  </ion-navbar>\n</ion-header> -->\n\n<ion-content  style="background-color:white">\n\n  <div class="app-wrapper">\n    <header class="header">\n        <div class="title-wrapper">\n            <h1 class="title">Courier Delivery</h1>\n        </div>\n    </header>\n\n    <div class="forms-wrapper mt-100">\n        <h4 class="signinPrompt">Sign in here</h4>\n\n        <form class="mt-30">\n            <div class="form-group">\n                <ion-select class="form-control" placeholder="Select your name">\n                    <ion-option>Femi Oke</ion-option>\n                    <ion-option>Tunde Chuks</ion-option>\n                    <ion-option>Dapo Oyebade</ion-option>\n                </ion-select>\n            </div>\n            <button class="btn btn-primary" (click)="registerUser()">Sign in</button>\n        </form>\n    </div>\n</div>\n</ion-content>\n'/*ion-inline-end:"/Users/appdevmac1/ionic-projects/CourierApp/src/pages/home/home.html"*/
         }),
-        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__providers_courierprovider_courierprovider__["a" /* CourierproviderProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__providers_courierprovider_courierprovider__["a" /* CourierproviderProvider */]) === "function" && _b || Object])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */], __WEBPACK_IMPORTED_MODULE_2__providers_courierprovider_courierprovider__["a" /* CourierproviderProvider */]])
     ], HomePage);
     return HomePage;
-    var _a, _b;
 }());
 
 //# sourceMappingURL=home.js.map
@@ -155,7 +161,7 @@ var CourierproviderProvider = /** @class */ (function () {
             //   <div class="custom-spinner-container">
             //     <div class="custom-spinner-box"></div>
             //   </div>`,
-            content: "\n          <div class=\"custom-spinner-box\"></div>",
+            content: "\n      <div class=\"custom-spinner-container\">\n           <div class=\"custom-spinner-box\"></div>\n          </div>",
             duration: 5000
         });
         loading.onDidDismiss(function () {
@@ -163,12 +169,22 @@ var CourierproviderProvider = /** @class */ (function () {
         });
         loading.present();
     };
+    CourierproviderProvider.prototype.callService = function (url) {
+        var _this = this;
+        return new Promise(function (resolve, reject) {
+            _this.http.post(url, null)
+                .subscribe(function (res) {
+                resolve(res);
+            }, function (err) {
+                reject(err);
+            });
+        });
+    };
     CourierproviderProvider = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["A" /* Injectable */])(),
-        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_0__angular_common_http__["a" /* HttpClient */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_common_http__["a" /* HttpClient */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["e" /* LoadingController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["e" /* LoadingController */]) === "function" && _b || Object])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_0__angular_common_http__["a" /* HttpClient */], __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["e" /* LoadingController */]])
     ], CourierproviderProvider);
     return CourierproviderProvider;
-    var _a, _b;
 }());
 
 //# sourceMappingURL=courierprovider.js.map
