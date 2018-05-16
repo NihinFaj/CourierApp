@@ -386,3 +386,59 @@ footer {
 .icon-back {
   background-image: url(../assets/icon/back.png);
 }
+
+/* Loader CSS */
+.is-loading {
+  overflow: hidden;
+}
+.loader {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(47, 47, 47, 0.8);
+  z-index: 9999;
+}
+.loader__indicator {
+  overflow: hidden;
+  float: left;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  font-size: 10px;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  margin: -20px 0 0 -20px;
+  z-index: 99999;
+  text-indent: -9999em;
+  border-top: 5px solid rgba(255, 255, 255, 0.9);
+  border-right: 5px solid rgba(255, 255, 255, 0.9);
+  border-bottom: 5px solid rgba(255, 255, 255, 0.9);
+  border-left: 5px solid #f65806;
+  -webkit-transform: translateZ(0);
+  -ms-transform: translateZ(0);
+  transform: translateZ(0);
+  -webkit-animation: loadSpinner 1.1s infinite linear;
+  animation: loadSpinner 1.1s infinite linear;
+}
+@-webkit-keyframes loadSpinner {
+  0% {
+  -webkit-transform: rotate(0deg);
+  transform: rotate(0deg);
+}
+100% {
+  -webkit-transform: rotate(360deg);
+  transform: rotate(360deg);
+}
+}@keyframes loadSpinner {
+  0% {
+  -webkit-transform: rotate(0deg);
+  transform: rotate(0deg);
+}
+100% {
+  -webkit-transform: rotate(360deg);
+  transform: rotate(360deg);
+}
+/* Loader CSS */

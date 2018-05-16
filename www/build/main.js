@@ -34,11 +34,11 @@ var map = {
 		2
 	],
 	"../pages/successpage/successpage.module": [
-		280,
+		281,
 		1
 	],
 	"../pages/viewrequest/viewrequest.module": [
-		281,
+		280,
 		0
 	]
 };
@@ -78,35 +78,56 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var HomePage = /** @class */ (function () {
-    function HomePage(navCtrl, courierProvider) {
+    function HomePage(loadingCtrl, navCtrl, courierProvider) {
+        this.loadingCtrl = loadingCtrl;
         this.navCtrl = navCtrl;
         this.courierProvider = courierProvider;
-        // registerUser() {
-        //   console.log("I am about to go Link Device Page")
-        //   this.courierProvider.presentLoadingCustom();
-        //   console.log("Just called the loader")    
-        //   this.navCtrl.setRoot("LinkdevicePage");
-        // }
-        this.apiURL = 'http://gtmobile.gtbank.com/CourierAppAPI/api/Courier/get-all-names';
+        this.getAllUserURL = 'http://gtmobile.gtbank.com/CourierAppAPI/api/Courier/get-all-names';
+        this.registerUserURL = 'http://gtmobile.gtbank.com/CourierAppAPI/api/Courier/register-user';
+        this.getAllUser();
     }
-    HomePage.prototype.registerUser = function () {
-        this.courierProvider.callService(this.apiURL)
+    HomePage.prototype.getAllUser = function () {
+        var _this = this;
+        this.loading = this.loadingCtrl.create({ content: "" });
+        this.loading.present();
+        this.courierProvider.callService(this.getAllUserURL)
             .then(function (result) {
+            _this.loading.dismissAll();
             console.log("Call entered success");
             console.log(result);
         }, function (err) {
+            _this.loading.dismissAll();
             console.log("Call entered exception");
             console.log(err);
         });
     };
+    HomePage.prototype.registerUser = function () {
+        var _this = this;
+        this.loading = this.loadingCtrl.create({ content: "Registering User, please wait..." });
+        this.loading.present();
+        this.courierProvider.callService(this.registerUserURL)
+            .then(function (result) {
+            _this.loading.dismissAll();
+            console.log("Call entered success");
+            console.log(result);
+            _this.navCtrl.setRoot("LinkdevicePage");
+        }, function (err) {
+            _this.loading.dismissAll();
+            console.log("Call entered exception");
+            console.log(err);
+            _this.navCtrl.setRoot("LinkdevicePage");
+        });
+    };
     HomePage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-home',template:/*ion-inline-start:"/Users/appdevmac1/ionic-projects/CourierApp/src/pages/home/home.html"*/'<!-- <ion-header>\n  <ion-navbar>\n    <ion-title>\n      Courier App\n    </ion-title>\n  </ion-navbar>\n</ion-header> -->\n\n<ion-content  style="background-color:white">\n\n  <div class="app-wrapper">\n    <header class="header">\n        <div class="title-wrapper">\n            <h1 class="title">Courier Delivery</h1>\n        </div>\n    </header>\n\n    <div class="forms-wrapper mt-100">\n        <h4 class="signinPrompt">Sign in here</h4>\n\n        <form class="mt-30">\n            <div class="form-group">\n                <ion-select class="form-control" placeholder="Select your name">\n                    <ion-option>Femi Oke</ion-option>\n                    <ion-option>Tunde Chuks</ion-option>\n                    <ion-option>Dapo Oyebade</ion-option>\n                </ion-select>\n            </div>\n            <button class="btn btn-primary" (click)="registerUser()">Sign in</button>\n        </form>\n    </div>\n</div>\n</ion-content>\n'/*ion-inline-end:"/Users/appdevmac1/ionic-projects/CourierApp/src/pages/home/home.html"*/
+            selector: 'page-home',template:/*ion-inline-start:"/Users/appdevmac1/ionic-projects/CourierApp/src/pages/home/home.html"*/'<!-- <ion-header>\n  <ion-navbar>\n    <ion-title>\n      Courier App\n    </ion-title>\n  </ion-navbar>\n</ion-header> -->\n\n<ion-content  style="background-color:white">\n\n  <div class="app-wrapper">\n    <header class="header">\n        <div class="title-wrapper">\n            <h1 class="title">Courier Delivery</h1>\n        </div>\n    </header>\n\n    <div class="forms-wrapper mt-100">\n        <h4 class="signinPrompt">Register here</h4>\n\n        <form class="mt-30">\n            <div class="form-group">\n                <ion-select class="form-control" placeholder="Select your name">\n                    <ion-option>Femi Oke</ion-option>\n                    <ion-option>Tunde Chuks</ion-option>\n                    <ion-option>Dapo Oyebade</ion-option>\n                </ion-select>\n            </div>\n            <button class="btn btn-primary" (click)="registerUser()">Sign in</button>\n        </form>\n    </div>\n</div>\n</ion-content>\n'/*ion-inline-end:"/Users/appdevmac1/ionic-projects/CourierApp/src/pages/home/home.html"*/
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */], __WEBPACK_IMPORTED_MODULE_2__providers_courierprovider_courierprovider__["a" /* CourierproviderProvider */]])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* LoadingController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* LoadingController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__providers_courierprovider_courierprovider__["a" /* CourierproviderProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__providers_courierprovider_courierprovider__["a" /* CourierproviderProvider */]) === "function" && _c || Object])
     ], HomePage);
     return HomePage;
+    var _a, _b, _c;
 }());
 
 //# sourceMappingURL=home.js.map
@@ -143,18 +164,8 @@ var CourierproviderProvider = /** @class */ (function () {
     function CourierproviderProvider(http, loadingCtrl) {
         this.http = http;
         this.loadingCtrl = loadingCtrl;
-        console.log('Hello CourierProvider Provider');
     }
-    CourierproviderProvider.prototype.presentLoadingDefault = function () {
-        var loading = this.loadingCtrl.create({
-            content: 'Please wait...'
-        });
-        loading.present();
-        setTimeout(function () {
-            loading.dismiss();
-        }, 5000);
-    };
-    CourierproviderProvider.prototype.presentLoadingCustom = function () {
+    CourierproviderProvider.prototype.showLoader = function () {
         var loading = this.loadingCtrl.create({
             // spinner: 'hide',
             // content: `
@@ -182,9 +193,10 @@ var CourierproviderProvider = /** @class */ (function () {
     };
     CourierproviderProvider = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["A" /* Injectable */])(),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_0__angular_common_http__["a" /* HttpClient */], __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["e" /* LoadingController */]])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_0__angular_common_http__["a" /* HttpClient */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_common_http__["a" /* HttpClient */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["e" /* LoadingController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["e" /* LoadingController */]) === "function" && _b || Object])
     ], CourierproviderProvider);
     return CourierproviderProvider;
+    var _a, _b;
 }());
 
 //# sourceMappingURL=courierprovider.js.map
@@ -252,8 +264,8 @@ var AppModule = /** @class */ (function () {
                         { loadChildren: '../pages/linkdevice/linkdevice.module#LinkdevicePageModule', name: 'LinkdevicePage', segment: 'linkdevice', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/mailroomdashboard/mailroomdashboard.module#MailroomdashboardPageModule', name: 'MailroomdashboardPage', segment: 'mailroomdashboard', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/riderdashboard/riderdashboard.module#RiderdashboardPageModule', name: 'RiderdashboardPage', segment: 'riderdashboard', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/successpage/successpage.module#SuccesspagePageModule', name: 'SuccesspagePage', segment: 'successpage', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/viewrequest/viewrequest.module#ViewrequestPageModule', name: 'ViewrequestPage', segment: 'viewrequest', priority: 'low', defaultHistory: [] }
+                        { loadChildren: '../pages/viewrequest/viewrequest.module#ViewrequestPageModule', name: 'ViewrequestPage', segment: 'viewrequest', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/successpage/successpage.module#SuccesspagePageModule', name: 'SuccesspagePage', segment: 'successpage', priority: 'low', defaultHistory: [] }
                     ]
                 }),
                 __WEBPACK_IMPORTED_MODULE_9__angular_common_http__["b" /* HttpClientModule */]

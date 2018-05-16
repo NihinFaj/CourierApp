@@ -13,22 +13,9 @@ import { LinkdevicePage } from '../../pages/linkdevice/linkdevice';
 export class CourierproviderProvider {
 
   constructor(public http: HttpClient, public loadingCtrl: LoadingController) {
-    console.log('Hello CourierProvider Provider');
   }
 
-  presentLoadingDefault() {
-    let loading = this.loadingCtrl.create({
-      content: 'Please wait...'
-    });
-  
-    loading.present();
-  
-    setTimeout(() => {
-      loading.dismiss();
-    }, 5000);
-  }
-
-  presentLoadingCustom() {
+  showLoader() {
     let loading = this.loadingCtrl.create({
       // spinner: 'hide',
       // content: `
@@ -59,4 +46,6 @@ export class CourierproviderProvider {
         });
     });
   }
+
+
 }
