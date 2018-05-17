@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { LoadingController } from 'ionic-angular';
 import { LinkdevicePage } from '../../pages/linkdevice/linkdevice';
+import { AlertController } from 'ionic-angular';
 
 /*
   Generated class for the CourierProvider provider.
@@ -12,7 +13,7 @@ import { LinkdevicePage } from '../../pages/linkdevice/linkdevice';
 @Injectable()
 export class CourierproviderProvider {
 
-  constructor(public http: HttpClient, public loadingCtrl: LoadingController) {
+  constructor(public http: HttpClient, public loadingCtrl: LoadingController, private alertCtrl: AlertController) {
   }
 
   showLoader() {
@@ -32,7 +33,6 @@ export class CourierproviderProvider {
     loading.onDidDismiss(() => {
       console.log('Dismissed loading');
     });
-  
     loading.present();
   }
 
@@ -46,6 +46,16 @@ export class CourierproviderProvider {
         });
     });
   }
+
+  presentAlert(msg) {
+    let alert = this.alertCtrl.create({
+      title: 'Alert',
+      subTitle: msg,
+      buttons: ['Dismiss']
+    });
+    alert.present();
+  }
+  
 
 
 }

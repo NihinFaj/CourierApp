@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, IonicPage, NavParams } from 'ionic-angular';
 import { CourierproviderProvider } from '../../providers/courierprovider/courierprovider';
 import { LoadingController } from 'ionic-angular';
+import { Injectable } from '@angular/core';
 
 
 @Component({
@@ -14,12 +15,15 @@ export class HomePage {
     this.getAllUser();
   }
 
-  loading: any;  
+  loading: any; 
+  
+  data = {
+    name: ""
+  }
 
   getAllUserURL = 'http://gtmobile.gtbank.com/CourierAppAPI/api/Courier/get-all-names';
 
   registerUserURL = 'http://gtmobile.gtbank.com/CourierAppAPI/api/Courier/register-user';
-
 
   getAllUser() {
     this.loading = this.loadingCtrl.create({ content: "" });
@@ -37,9 +41,14 @@ export class HomePage {
   );
   }
 
-
   registerUser() {
-    this.loading = this.loadingCtrl.create({ content: "Registering User, please wait..." });
+
+    if (!this.data.name){
+      this.courierProvider.presentAlert("Please select a name");
+      return false;
+    }
+
+    this.loading = this.loadingCtrl.create({ content: "Registering User..." });
     this.loading.present();
     this.courierProvider.callService(this.registerUserURL)
     .then((result) => {
@@ -54,6 +63,7 @@ export class HomePage {
     this.navCtrl.setRoot("LinkdevicePage");      
     }
   );
+
   }
 
 }
