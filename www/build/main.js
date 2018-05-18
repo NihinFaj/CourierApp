@@ -87,8 +87,9 @@ var HomePage = /** @class */ (function () {
         this.data = {
             name: ""
         };
-        this.getAllUserURL = 'http://gtmobile.gtbank.com/CourierAppAPI/api/Courier/get-all-names';
-        this.registerUserURL = 'http://gtmobile.gtbank.com/CourierAppAPI/api/Courier/register-user';
+        this.getAllUserURL = 'http://gtmobile.gtbank.com/CourierAPI/api/Courier/get-all-names';
+        this.getAllRequest = 'http://gtmobile.gtbank.com/CourierAPI/api/Courier/get-all-requests';
+        this.registerUserURL = 'http://gtmobile.gtbank.com/CourierAPI/api/Courier/register-user';
         this.getAllUser();
     }
     HomePage.prototype.getAllUser = function () {
@@ -97,9 +98,18 @@ var HomePage = /** @class */ (function () {
         this.loading.present();
         this.courierProvider.callService(this.getAllUserURL)
             .then(function (result) {
-            _this.loading.dismissAll();
             console.log("Call entered success");
             console.log(result);
+            console.log(result.StatusCode);
+            console.log(result.Message);
+            if (result.StatusCode == 1000) {
+                _this.loading.dismissAll();
+                _this.allUsers = result.Message;
+            }
+            else {
+                _this.loading.dismissAll();
+                _this.courierProvider.presentAlert(result.Error);
+            }
         }, function (err) {
             _this.loading.dismissAll();
             console.log("Call entered exception");

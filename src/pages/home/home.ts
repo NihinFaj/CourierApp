@@ -3,6 +3,7 @@ import { NavController, IonicPage, NavParams } from 'ionic-angular';
 import { CourierproviderProvider } from '../../providers/courierprovider/courierprovider';
 import { LoadingController } from 'ionic-angular';
 import { Injectable } from '@angular/core';
+import {TransactionHistory, UserResponseModel} from '../home/AllUserResponseModel'
 
 
 @Component({
@@ -15,24 +16,37 @@ export class HomePage {
     this.getAllUser();
   }
 
-  loading: any; 
+  loading: any;
+  allUsers: any; 
   
   data = {
     name: ""
   }
 
-  getAllUserURL = 'http://gtmobile.gtbank.com/CourierAppAPI/api/Courier/get-all-names';
+  getAllUserURL = 'http://gtmobile.gtbank.com/CourierAPI/api/Courier/get-all-names';
+  getAllRequest = 'http://gtmobile.gtbank.com/CourierAPI/api/Courier/get-all-requests';
+  registerUserURL = 'http://gtmobile.gtbank.com/CourierAPI/api/Courier/register-user';
 
-  registerUserURL = 'http://gtmobile.gtbank.com/CourierAppAPI/api/Courier/register-user';
 
   getAllUser() {
     this.loading = this.loadingCtrl.create({ content: "" });
     this.loading.present();
     this.courierProvider.callService(this.getAllUserURL)
-    .then((result) => {
-    this.loading.dismissAll();      
+    .then((result: UserResponseModel) => {
       console.log("Call entered success");
-      console.log(result)
+      console.log(result);
+      console.log(result.StatusCode);
+      console.log(result.Message);
+
+      if (result.StatusCode == 1000){
+        this.loading.dismissAll();      
+        this.allUsers = result.Message;
+      }
+      else {
+        this.loading.dismissAll();      
+        this.courierProvider.presentAlert(result.Error);
+      }
+
     }, (err) => {
     this.loading.dismissAll();      
       console.log("Call entered exception");      
