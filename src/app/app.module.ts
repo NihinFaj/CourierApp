@@ -10,6 +10,8 @@ import { QRScanner, QRScannerStatus } from '@ionic-native/qr-scanner';
 import { CourierproviderProvider } from '../providers/courierprovider/courierprovider';
 import { HttpClientModule } from '@angular/common/http';
 import { Device } from '@ionic-native/device';
+import { Storage,IonicStorageModule } from '@ionic/storage';
+import { SessionproviderProvider } from '../providers/sessionprovider/sessionprovider';
 
 @NgModule({
   declarations: [
@@ -32,7 +34,8 @@ import { Device } from '@ionic-native/device';
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     QRScanner,
     CourierproviderProvider,
-    Device
+    Device,
+    SessionproviderProvider
   ]
 })
 export class AppModule {}

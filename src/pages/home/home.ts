@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, IonicPage, NavParams } from 'ionic-angular';
 import { CourierproviderProvider } from '../../providers/courierprovider/courierprovider';
+import { SessionproviderProvider } from '../../providers/sessionprovider/sessionprovider';
 import { LoadingController } from 'ionic-angular';
 import { Injectable } from '@angular/core';
 import { UserDetails, UserResponseModel} from '../home/AllUserResponseModel';
@@ -13,14 +14,13 @@ import { Device } from '@ionic-native/device';
 })
 export class HomePage {
 
-  constructor(public device: Device, public loadingCtrl: LoadingController, public navCtrl: NavController, public courierProvider: CourierproviderProvider) {
+  constructor(public device: Device, public loadingCtrl: LoadingController, public navCtrl: NavController, public courierProvider: CourierproviderProvider, public sessionProvider: SessionproviderProvider) {
     this.getAllUser();
     this.getDeviceInfo();
   }
 
   loading: any;
   Users: any;
-  deviceId: any;
   
   data = {
     Email: "",
@@ -83,12 +83,20 @@ export class HomePage {
     this.loading = this.loadingCtrl.create({ content: "Registering User..." });
     this.loading.present();
     this.courierProvider.callServicePost(this.registerUserURL, this.data)
-    .then((result) => {
-    this.loading.dismissAll();      
-      console.log("Call entered success");
-      console.log(result)
-    this.navCtrl.setRoot("LinkdevicePage");      
+    .then((result: any) => {
+
+    if (result.StatusCode == 1000) {
+      this.loading.dismissAll();
+      this.sessionProvider.setName(this.data.Email);
+      this.navCtrl.setRoot("LinkdevicePage");
+    }
+    else {
+      this.loading.dismissAll();      
+      this.courierProvider.presentAlert(result.Error);
+    }
+
     }, (err: any) => {
+
     this.loading.dismissAll();      
       console.log("Call entered exception");      
       console.log(err);

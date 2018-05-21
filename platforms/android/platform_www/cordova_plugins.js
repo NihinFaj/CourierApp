@@ -33,11 +33,11 @@ module.exports = [
     ]
   },
   {
-    "id": "cordova-plugin-uniquedeviceid.UniqueDeviceID",
-    "file": "plugins/cordova-plugin-uniquedeviceid/www/uniqueid.js",
-    "pluginId": "cordova-plugin-uniquedeviceid",
-    "merges": [
-      "window.plugins.uniqueDeviceID"
+    "id": "cordova-sqlite-storage.SQLitePlugin",
+    "file": "plugins/cordova-sqlite-storage/www/SQLitePlugin.js",
+    "pluginId": "cordova-sqlite-storage",
+    "clobbers": [
+      "SQLitePlugin"
     ]
   }
 ];
@@ -51,7 +51,7 @@ module.exports.metadata =
   "cordova-plugin-splashscreen": "5.0.2",
   "cordova-plugin-swift-support": "3.1.1",
   "cordova-plugin-whitelist": "1.3.3",
-  "cordova-plugin-uniquedeviceid": "1.3.2"
+  "cordova-sqlite-storage": "2.3.1"
 };
 // BOTTOM OF METADATA
 });
