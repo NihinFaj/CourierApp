@@ -47,6 +47,17 @@ export class CourierproviderProvider {
     });
   }
 
+  callServicePost(url, data) {
+    return new Promise((resolve, reject) => {
+      this.http.post(url, data)
+        .subscribe(res => {
+          resolve(res);
+        }, (err) => {
+          reject(err);
+        });
+    });
+  }
+
   presentAlert(msg) {
     let alert = this.alertCtrl.create({
       title: 'Alert',

@@ -22,23 +22,23 @@ webpackEmptyAsyncContext.id = 111;
 
 var map = {
 	"../pages/linkdevice/linkdevice.module": [
-		277,
+		278,
 		4
 	],
 	"../pages/mailroomdashboard/mailroomdashboard.module": [
-		278,
+		279,
 		3
 	],
 	"../pages/riderdashboard/riderdashboard.module": [
-		279,
+		280,
 		2
 	],
 	"../pages/successpage/successpage.module": [
-		280,
+		281,
 		1
 	],
 	"../pages/viewrequest/viewrequest.module": [
-		281,
+		282,
 		0
 	]
 };
@@ -66,6 +66,7 @@ module.exports = webpackAsyncContext;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(28);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_courierprovider_courierprovider__ = __webpack_require__(197);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_device__ = __webpack_require__(277);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -79,26 +80,39 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var HomePage = /** @class */ (function () {
-    function HomePage(loadingCtrl, navCtrl, courierProvider) {
+    function HomePage(device, loadingCtrl, navCtrl, courierProvider) {
+        this.device = device;
         this.loadingCtrl = loadingCtrl;
         this.navCtrl = navCtrl;
         this.courierProvider = courierProvider;
         this.data = {
-            name: ""
+            Email: "",
+            Status: "",
+            DeviceId: ""
         };
         this.getAllUserURL = 'http://gtmobile.gtbank.com/CourierAPI/api/Courier/get-all-names';
         this.getAllRequest = 'http://gtmobile.gtbank.com/CourierAPI/api/Courier/get-all-requests';
         this.registerUserURL = 'http://gtmobile.gtbank.com/CourierAPI/api/Courier/register-user';
         this.getAllUser();
+        this.getDeviceInfo();
     }
+    HomePage.prototype.getDeviceInfo = function () {
+        console.log('Device UUID is: ' + this.device.uuid);
+        console.log('Cordova is: ' + this.device.cordova);
+        console.log('Device Model is: ' + this.device.model);
+        console.log('Platform is: ' + this.device.platform);
+        console.log('OS Version is: ' + this.device.version);
+        console.log('Manufacturer is: ' + this.device.manufacturer);
+        console.log('Serial Number is: ' + this.device.serial);
+    };
     HomePage.prototype.getAllUser = function () {
         var _this = this;
         this.loading = this.loadingCtrl.create({ content: "" });
         this.loading.present();
         this.courierProvider.callService(this.getAllUserURL)
             .then(function (result) {
-            console.log(result);
             if (result.StatusCode == 1000) {
                 _this.loading.dismissAll();
                 _this.Users = JSON.parse(result.Message);
@@ -112,17 +126,21 @@ var HomePage = /** @class */ (function () {
             _this.loading.dismissAll();
             console.log("Call entered exception");
             console.log(err);
+            _this.courierProvider.presentAlert("Service not available at the moment, please try again later");
         });
     };
     HomePage.prototype.registerUser = function () {
         var _this = this;
-        if (!this.data.name) {
+        if (!this.data.Email) {
             this.courierProvider.presentAlert("Please select a name");
             return false;
         }
+        this.data.DeviceId = "123456";
+        this.data.Status = "1";
+        console.log(this.data);
         this.loading = this.loadingCtrl.create({ content: "Registering User..." });
         this.loading.present();
-        this.courierProvider.callService(this.registerUserURL)
+        this.courierProvider.callServicePost(this.registerUserURL, this.data)
             .then(function (result) {
             _this.loading.dismissAll();
             console.log("Call entered success");
@@ -132,14 +150,14 @@ var HomePage = /** @class */ (function () {
             _this.loading.dismissAll();
             console.log("Call entered exception");
             console.log(err);
-            _this.navCtrl.setRoot("LinkdevicePage");
+            _this.courierProvider.presentAlert("Service not available at the moment, please try again later");
         });
     };
     HomePage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-home',template:/*ion-inline-start:"/Users/appdevmac1/ionic-projects/CourierApp/src/pages/home/home.html"*/'<!-- <ion-header>\n  <ion-navbar>\n    <ion-title>\n      Courier App\n    </ion-title>\n  </ion-navbar>\n</ion-header> -->\n\n<ion-content  style="background-color:white">\n\n  <div class="app-wrapper">\n    <header class="header">\n        <div class="title-wrapper">\n            <h1 class="title">Courier Delivery</h1>\n        </div>\n    </header>\n\n    <div class="forms-wrapper mt-100">\n        <h4 class="signinPrompt">Register here</h4>\n\n        <form class="mt-30">\n\n            <div class="form-group">\n                <ion-select [(ngModel)]="data.name" class="form-control select-control" name="userName" placeholder="Select a name">\n                    <ion-option *ngFor="let x of this.Users"> {{ x.Courier_Name }}       \n                    </ion-option>\n                </ion-select>\n\n            </div>\n\n            <!-- <div class="form-group">\n                <select id="" name="name">\n                    <option value="" ng-selected="true">Please select a Name</option>\n                    <option value="1">Femi Oke</option>\n                    <option value="2">Tunde Chuks</option>\n                    <option value="3">Dapo Oyebade</option>\n                    <option value="4">Chukwudi Eze</option>\n                </select>\n            </div> -->\n\n            <button class="btn btn-primary" (click)="registerUser()">Sign in</button>\n        </form>\n    </div>\n</div>\n</ion-content>\n'/*ion-inline-end:"/Users/appdevmac1/ionic-projects/CourierApp/src/pages/home/home.html"*/
+            selector: 'page-home',template:/*ion-inline-start:"/Users/appdevmac1/ionic-projects/CourierApp/src/pages/home/home.html"*/'<!-- <ion-header>\n  <ion-navbar>\n    <ion-title>\n      Courier App\n    </ion-title>\n  </ion-navbar>\n</ion-header> -->\n\n<ion-content  style="background-color:white">\n\n  <div class="app-wrapper">\n    <header class="header">\n        <div class="title-wrapper">\n            <h1 class="title">Courier Delivery</h1>\n        </div>\n    </header>\n\n    <div class="forms-wrapper mt-100">\n        <h4 class="signinPrompt">Register here</h4>\n\n        <form class="mt-30">\n\n            <div class="form-group">\n                <ion-select [(ngModel)]="data.Email" class="form-control select-control" name="userName" placeholder="Select a name">\n                    <ion-option *ngFor="let x of this.Users" [value]="x.Email_Address"> {{ x.Courier_Name }}       \n                    </ion-option>\n                </ion-select>\n            </div>\n\n            <button class="btn btn-primary" (click)="registerUser()">Register</button>\n        </form>\n    </div>\n</div>\n</ion-content>\n'/*ion-inline-end:"/Users/appdevmac1/ionic-projects/CourierApp/src/pages/home/home.html"*/
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* LoadingController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */], __WEBPACK_IMPORTED_MODULE_2__providers_courierprovider_courierprovider__["a" /* CourierproviderProvider */]])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_3__ionic_native_device__["a" /* Device */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* LoadingController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */], __WEBPACK_IMPORTED_MODULE_2__providers_courierprovider_courierprovider__["a" /* CourierproviderProvider */]])
     ], HomePage);
     return HomePage;
 }());
@@ -200,6 +218,17 @@ var CourierproviderProvider = /** @class */ (function () {
         var _this = this;
         return new Promise(function (resolve, reject) {
             _this.http.post(url, null)
+                .subscribe(function (res) {
+                resolve(res);
+            }, function (err) {
+                reject(err);
+            });
+        });
+    };
+    CourierproviderProvider.prototype.callServicePost = function (url, data) {
+        var _this = this;
+        return new Promise(function (resolve, reject) {
+            _this.http.post(url, data)
                 .subscribe(function (res) {
                 resolve(res);
             }, function (err) {

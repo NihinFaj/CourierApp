@@ -3,7 +3,8 @@ import { NavController, IonicPage, NavParams } from 'ionic-angular';
 import { CourierproviderProvider } from '../../providers/courierprovider/courierprovider';
 import { LoadingController } from 'ionic-angular';
 import { Injectable } from '@angular/core';
-import {UserDetails, UserResponseModel} from '../home/AllUserResponseModel'
+import { UserDetails, UserResponseModel} from '../home/AllUserResponseModel';
+import { Device } from '@ionic-native/device';
 
 
 @Component({
@@ -12,28 +13,40 @@ import {UserDetails, UserResponseModel} from '../home/AllUserResponseModel'
 })
 export class HomePage {
 
-  constructor(public loadingCtrl: LoadingController, public navCtrl: NavController, public courierProvider: CourierproviderProvider) {
+  constructor(public device: Device, public loadingCtrl: LoadingController, public navCtrl: NavController, public courierProvider: CourierproviderProvider) {
     this.getAllUser();
+    this.getDeviceInfo();
   }
 
   loading: any;
   Users: any;
+  deviceId: any;
   
   data = {
-    name: ""
+    Email: "",
+    Status:"",
+    DeviceId:""
   }
 
   getAllUserURL = 'http://gtmobile.gtbank.com/CourierAPI/api/Courier/get-all-names';
   getAllRequest = 'http://gtmobile.gtbank.com/CourierAPI/api/Courier/get-all-requests';
   registerUserURL = 'http://gtmobile.gtbank.com/CourierAPI/api/Courier/register-user';
 
+  getDeviceInfo(){
+    console.log('Device UUID is: ' + this.device.uuid);
+    console.log('Cordova is: ' + this.device.cordova);
+    console.log('Device Model is: ' + this.device.model);
+    console.log('Platform is: ' + this.device.platform);
+    console.log('OS Version is: ' + this.device.version);
+    console.log('Manufacturer is: ' + this.device.manufacturer);
+    console.log('Serial Number is: ' + this.device.serial);
+  }
 
   getAllUser() {
     this.loading = this.loadingCtrl.create({ content: "" });
     this.loading.present();
     this.courierProvider.callService(this.getAllUserURL)
     .then((result: any) => {
-      console.log(result);
 
       if (result.StatusCode == 1000){
         this.loading.dismissAll();      
@@ -45,34 +58,41 @@ export class HomePage {
         this.courierProvider.presentAlert(result.Error);
       }
 
-    }, (err) => {
+    }, (err: any) => {
+
     this.loading.dismissAll();      
       console.log("Call entered exception");      
       console.log(err);
+      this.courierProvider.presentAlert("Service not available at the moment, please try again later");
     }
   );
   }
 
   registerUser() {
 
-    if (!this.data.name){
+    if (!this.data.Email) {
       this.courierProvider.presentAlert("Please select a name");
       return false;
     }
 
+    this.data.DeviceId = this.device.uuid || "123456";
+    this.data.Status = "1";
+
+    console.log(this.data);
+
     this.loading = this.loadingCtrl.create({ content: "Registering User..." });
     this.loading.present();
-    this.courierProvider.callService(this.registerUserURL)
+    this.courierProvider.callServicePost(this.registerUserURL, this.data)
     .then((result) => {
     this.loading.dismissAll();      
       console.log("Call entered success");
       console.log(result)
     this.navCtrl.setRoot("LinkdevicePage");      
-    }, (err) => {
+    }, (err: any) => {
     this.loading.dismissAll();      
       console.log("Call entered exception");      
       console.log(err);
-    this.navCtrl.setRoot("LinkdevicePage");      
+      this.courierProvider.presentAlert("Service not available at the moment, please try again later");      
     }
   );
 

@@ -9,6 +9,7 @@ import { HomePage } from '../pages/home/home';
 import { QRScanner, QRScannerStatus } from '@ionic-native/qr-scanner';
 import { CourierproviderProvider } from '../providers/courierprovider/courierprovider';
 import { HttpClientModule } from '@angular/common/http';
+import { Device } from '@ionic-native/device';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { HttpClientModule } from '@angular/common/http';
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     QRScanner,
-    CourierproviderProvider
+    CourierproviderProvider,
+    Device
   ]
 })
 export class AppModule {}

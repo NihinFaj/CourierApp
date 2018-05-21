@@ -21,24 +21,13 @@
         <form class="mt-30">
 
             <div class="form-group">
-                <ion-select [(ngModel)]="data.name" class="form-control select-control" name="userName" placeholder="Select a name">
-                    <ion-option *ngFor="let x of this.Users"> {{ x.Courier_Name }}       
+                <ion-select [(ngModel)]="data.Email" class="form-control select-control" name="userName" placeholder="Select a name">
+                    <ion-option *ngFor="let x of this.Users" [value]="x.Email_Address"> {{ x.Courier_Name }}       
                     </ion-option>
                 </ion-select>
-
             </div>
 
-            <!-- <div class="form-group">
-                <select id="" name="name">
-                    <option value="" ng-selected="true">Please select a Name</option>
-                    <option value="1">Femi Oke</option>
-                    <option value="2">Tunde Chuks</option>
-                    <option value="3">Dapo Oyebade</option>
-                    <option value="4">Chukwudi Eze</option>
-                </select>
-            </div> -->
-
-            <button class="btn btn-primary" (click)="registerUser()">Sign in</button>
+            <button class="btn btn-primary" (click)="registerUser()">Register</button>
         </form>
     </div>
 </div>
