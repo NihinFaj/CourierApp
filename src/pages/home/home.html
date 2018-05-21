@@ -21,7 +21,7 @@
         <form class="mt-30">
 
             <div class="form-group">
-                <ion-select [(ngModel)]="data.name" class="form-control" name="userName" placeholder="Select a name">
+                <ion-select [(ngModel)]="data.name" class="form-control select-control" name="userName" placeholder="Select a name">
                     <ion-option *ngFor="let x of this.Users"> {{ x.Courier_Name }}       
                     </ion-option>
                 </ion-select>
