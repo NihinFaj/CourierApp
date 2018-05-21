@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { SessionproviderProvider } from '../../providers/sessionprovider/sessionprovider';
 
 /**
  * Generated class for the LinkdevicePage page.
@@ -15,15 +16,20 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class LinkdevicePage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public sessionProvider: SessionproviderProvider, public navCtrl: NavController, public navParams: NavParams) {
+    this.getRegisteredUser();
   }
 
+  registeredUser: any;
+
   ionViewDidLoad() {
-    console.log('ionViewDidLoad LinkdevicePage');
+  }
+
+  getRegisteredUser(){
+     this.registeredUser = this.sessionProvider.GetName();
   }
 
   linkDevice() {
-    console.log("I am about to Link Device");
     this.navCtrl.setRoot("RiderdashboardPage");
   }
 
