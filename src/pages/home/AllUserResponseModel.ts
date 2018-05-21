@@ -1,24 +1,15 @@
-export class TransactionHistory {
+export class UserDetails {
     constructor (
-        public postingTellerId: string,
-        public transDate: string,
-        public transSeq1: string,
-        public origtTransSeq1: string,
-        public reference: string,
-        public narration: string,
-        public valueDate: string,
-        public amountDebit: string,
-        public amountCredit: string,
-        public channel: string,
-        public explCode: string,
-        public origtBraCode: string) {}
+        public Courier_Name: string,
+        public Units_Branches: string,
+        public Phone_Numbers: number,
+        public Email_Address: string) {}
 }
 
 export class UserResponseModel {
     constructor (
         public StatusCode: number,
-        // public Message: TransactionHistory[],
-        public Message: string,
+        public Message: UserDetails[],
         public Error: string,
         public AuthToken: string) {}
 }

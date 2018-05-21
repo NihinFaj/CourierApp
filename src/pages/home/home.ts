@@ -3,7 +3,7 @@ import { NavController, IonicPage, NavParams } from 'ionic-angular';
 import { CourierproviderProvider } from '../../providers/courierprovider/courierprovider';
 import { LoadingController } from 'ionic-angular';
 import { Injectable } from '@angular/core';
-import {TransactionHistory, UserResponseModel} from '../home/AllUserResponseModel'
+import {UserDetails, UserResponseModel} from '../home/AllUserResponseModel'
 
 
 @Component({
@@ -17,7 +17,7 @@ export class HomePage {
   }
 
   loading: any;
-  allUsers: any; 
+  Users: any;
   
   data = {
     name: ""
@@ -32,15 +32,13 @@ export class HomePage {
     this.loading = this.loadingCtrl.create({ content: "" });
     this.loading.present();
     this.courierProvider.callService(this.getAllUserURL)
-    .then((result: UserResponseModel) => {
-      console.log("Call entered success");
+    .then((result: any) => {
       console.log(result);
-      console.log(result.StatusCode);
-      console.log(result.Message);
 
       if (result.StatusCode == 1000){
         this.loading.dismissAll();      
-        this.allUsers = result.Message;
+        this.Users = JSON.parse(result.Message);
+        console.log(this.Users);        
       }
       else {
         this.loading.dismissAll();      

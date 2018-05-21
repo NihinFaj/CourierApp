@@ -98,13 +98,11 @@ var HomePage = /** @class */ (function () {
         this.loading.present();
         this.courierProvider.callService(this.getAllUserURL)
             .then(function (result) {
-            console.log("Call entered success");
             console.log(result);
-            console.log(result.StatusCode);
-            console.log(result.Message);
             if (result.StatusCode == 1000) {
                 _this.loading.dismissAll();
-                _this.allUsers = result.Message;
+                _this.Users = JSON.parse(result.Message);
+                console.log(_this.Users);
             }
             else {
                 _this.loading.dismissAll();
@@ -139,12 +137,11 @@ var HomePage = /** @class */ (function () {
     };
     HomePage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-home',template:/*ion-inline-start:"/Users/appdevmac1/ionic-projects/CourierApp/src/pages/home/home.html"*/'<!-- <ion-header>\n  <ion-navbar>\n    <ion-title>\n      Courier App\n    </ion-title>\n  </ion-navbar>\n</ion-header> -->\n\n<ion-content  style="background-color:white">\n\n  <div class="app-wrapper">\n    <header class="header">\n        <div class="title-wrapper">\n            <h1 class="title">Courier Delivery</h1>\n        </div>\n    </header>\n\n    <div class="forms-wrapper mt-100">\n        <h4 class="signinPrompt">Register here</h4>\n\n        <form class="mt-30">\n\n            <div class="form-group">\n                <ion-select [(ngModel)]="data.name" class="form-control" name="userName" placeholder="Select a name">\n                    <ion-option value="1">Femi Oke</ion-option>\n                    <ion-option value="2">Tunde Chuks</ion-option>\n                    <ion-option value="3">Dapo Oyebade</ion-option>\n                    <ion-option value="4">Chukwudi Eze</ion-option>\n                </ion-select>\n            </div>\n\n            <!-- <div class="form-group">\n                <select id="" name="name">\n                    <option value="" ng-selected="true">Please select a Name</option>\n                    <option value="1">Femi Oke</option>\n                    <option value="2">Tunde Chuks</option>\n                    <option value="3">Dapo Oyebade</option>\n                    <option value="4">Chukwudi Eze</option>\n                </select>\n            </div> -->\n\n            <button class="btn btn-primary" (click)="registerUser()">Sign in</button>\n        </form>\n    </div>\n</div>\n</ion-content>\n'/*ion-inline-end:"/Users/appdevmac1/ionic-projects/CourierApp/src/pages/home/home.html"*/
+            selector: 'page-home',template:/*ion-inline-start:"/Users/appdevmac1/ionic-projects/CourierApp/src/pages/home/home.html"*/'<!-- <ion-header>\n  <ion-navbar>\n    <ion-title>\n      Courier App\n    </ion-title>\n  </ion-navbar>\n</ion-header> -->\n\n<ion-content  style="background-color:white">\n\n  <div class="app-wrapper">\n    <header class="header">\n        <div class="title-wrapper">\n            <h1 class="title">Courier Delivery</h1>\n        </div>\n    </header>\n\n    <div class="forms-wrapper mt-100">\n        <h4 class="signinPrompt">Register here</h4>\n\n        <form class="mt-30">\n\n            <div class="form-group">\n                <ion-select [(ngModel)]="data.name" class="form-control" name="userName" placeholder="Select a name">\n                    <ion-option *ngFor="let x of this.Users"> {{ x.Courier_Name }}       \n                    </ion-option>\n                </ion-select>\n\n            </div>\n\n            <!-- <div class="form-group">\n                <select id="" name="name">\n                    <option value="" ng-selected="true">Please select a Name</option>\n                    <option value="1">Femi Oke</option>\n                    <option value="2">Tunde Chuks</option>\n                    <option value="3">Dapo Oyebade</option>\n                    <option value="4">Chukwudi Eze</option>\n                </select>\n            </div> -->\n\n            <button class="btn btn-primary" (click)="registerUser()">Sign in</button>\n        </form>\n    </div>\n</div>\n</ion-content>\n'/*ion-inline-end:"/Users/appdevmac1/ionic-projects/CourierApp/src/pages/home/home.html"*/
         }),
-        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* LoadingController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* LoadingController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__providers_courierprovider_courierprovider__["a" /* CourierproviderProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__providers_courierprovider_courierprovider__["a" /* CourierproviderProvider */]) === "function" && _c || Object])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* LoadingController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */], __WEBPACK_IMPORTED_MODULE_2__providers_courierprovider_courierprovider__["a" /* CourierproviderProvider */]])
     ], HomePage);
     return HomePage;
-    var _a, _b, _c;
 }());
 
 //# sourceMappingURL=home.js.map
