@@ -12,6 +12,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { Device } from '@ionic-native/device';
 import { Storage,IonicStorageModule } from '@ionic/storage';
 import { SessionproviderProvider } from '../providers/sessionprovider/sessionprovider';
+import { CryptoJS } from 'crypto-js';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { SessionproviderProvider } from '../providers/sessionprovider/sessionpro
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
-    HttpClientModule
+    HttpClientModule,
+    IonicStorageModule.forRoot()
   ],
   bootstrap: [IonicApp],
   entryComponents: [

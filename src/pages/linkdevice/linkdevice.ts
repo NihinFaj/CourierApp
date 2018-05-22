@@ -25,8 +25,9 @@ export class LinkdevicePage {
   ionViewDidLoad() {
   }
 
-  getRegisteredUser(){
+  getRegisteredUser() {
      this.registeredUser = this.sessionProvider.GetName();
+     console.log(this.registeredUser);
   }
 
   linkDevice() {
