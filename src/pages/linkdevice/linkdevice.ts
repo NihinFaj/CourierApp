@@ -22,51 +22,22 @@ export class LinkdevicePage {
   constructor(public courierProvider: CourierproviderProvider, public sessionProvider: SessionproviderProvider, public navCtrl: NavController, public navParams: NavParams, public loadingCtrl: LoadingController) {
   }
 
-  data = {
-    name: ""
-  };
-
-  getAllRiderRequest = 'http://gtmobile.gtbank.com/CourierAPI/api/Courier/get-all-rider-requests';
-
-  loading: any;
-
   ionViewDidLoad() {
-    this.getRegisteredUser();    
   }
 
-  async getRegisteredUser() {
-    var derName = await this.sessionProvider.getStorage('userName');
-    this.data.name = derName;
-  }
+  // async getUserRole() {
+  //   var userRole = await this.sessionProvider.getStorage('role');
+  //   this.role = userRole;
+  // }
 
-  getAllRequests() {
+  // GoToRequests() {
+    // this.sessionProvider.setStorage('roleValue', this.role).then(() => {
+            // this.navCtrl.setRoot("RiderdashboardPage");      
+            // });
+  // }
 
-    this.loading = this.loadingCtrl.create({ content: "" });
-    this.loading.present();
-    this.courierProvider.callServicePost(this.getAllRiderRequest, this.data)
-    .then((result: any) => {
-
-    if (result.StatusCode == 1000) {
-      this.loading.dismissAll();
-
-      this.sessionProvider.setStorage('userName', "Array of all requests gotten from DB").then(() => {
-        this.navCtrl.setRoot("RiderdashboardPage");      
-        });
-    }
-    else {
-      this.loading.dismissAll();      
-      this.courierProvider.presentAlert(result.Error);
-    }
-
-    }, (err: any) => {
-
-    this.loading.dismissAll();      
-      console.log("Call entered exception");      
-      console.log(err);
-      this.courierProvider.presentAlert("Service not available at the moment, please try again later");      
-    }
-  );
-
+  GoToRequests() {
+    this.navCtrl.setRoot("RiderdashboardPage");      
   }
 
 }

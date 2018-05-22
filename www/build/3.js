@@ -45,6 +45,8 @@ var MailroomdashboardPageModule = /** @class */ (function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MailroomdashboardPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(31);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_courierprovider_courierprovider__ = __webpack_require__(111);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_sessionprovider_sessionprovider__ = __webpack_require__(110);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -56,6 +58,9 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 
 
+
+
+
 /**
  * Generated class for the MailroomdashboardPage page.
  *
@@ -63,20 +68,53 @@ var __metadata = (this && this.__metadata) || function (k, v) {
  * Ionic pages and navigation.
  */
 var MailroomdashboardPage = /** @class */ (function () {
-    function MailroomdashboardPage(navCtrl, navParams) {
+    function MailroomdashboardPage(sessionProvider, loadingCtrl, courierProvider, navCtrl, navParams) {
+        this.sessionProvider = sessionProvider;
+        this.loadingCtrl = loadingCtrl;
+        this.courierProvider = courierProvider;
         this.navCtrl = navCtrl;
         this.navParams = navParams;
+        this.role = "Rider";
+        this.getMailRoomRequestURL = 'http://gtmobile.gtbank.com/CourierAPI/api/Courier/get-all-mailroom-requests';
     }
     MailroomdashboardPage.prototype.ionViewDidLoad = function () {
-        console.log('ionViewDidLoad MailroomdashboardPage');
+    };
+    MailroomdashboardPage.prototype.getAllMailroomRequest = function () {
+        var _this = this;
+        this.loading = this.loadingCtrl.create({ content: "" });
+        this.loading.present();
+        this.courierProvider.callService(this.getMailRoomRequestURL)
+            .then(function (result) {
+            if (result.StatusCode == 1000) {
+                _this.loading.dismissAll();
+                _this.allRequests = JSON.parse(result.Message);
+                console.log(_this.allRequests);
+            }
+            else {
+                _this.loading.dismissAll();
+                _this.courierProvider.presentAlert(result.Error);
+            }
+        }, function (err) {
+            _this.loading.dismissAll();
+            console.log("Call entered exception");
+            console.log(err);
+            _this.courierProvider.presentAlert("Service not available at the moment, please try again later");
+        });
+    };
+    MailroomdashboardPage.prototype.acceptRequest = function (reqDets) {
+        var _this = this;
+        this.sessionProvider.setStorage('requestDetails', reqDets).then(function () {
+            _this.navCtrl.setRoot("ViewrequestPage");
+        });
     };
     MailroomdashboardPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
             selector: 'page-mailroomdashboard',template:/*ion-inline-start:"/Users/appdevmac1/ionic-projects/CourierApp/src/pages/mailroomdashboard/mailroomdashboard.html"*/'<!--\n  Generated template for the MailroomdashboardPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n    <ion-title>Today\'s Request</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n  <div class="app-wrapper">\n    <!-- <header class="header">\n        <div class="title-wrapper">\n            <h1 class="sm-title">Today\'s Request</h1>\n        </div>\n    </header> -->\n\n    <div class="cards-wrapper mt-30">\n\n       <div class="card requestCard">\n           <div class="cardContent">\n               <div class="listGroup">\n                    <div class="cardContent-list">\n                        <p class="list-title">Delivery type:</p>\n                        <p class="list-content">Within Lagos</p>\n                    </div>\n                    <div class="cardContent-list">\n                        <p class="list-title">Rider’s Date Initiated:</p>\n                        <p class="list-content">3:00pm 12/05/2018</p>\n                    </div>\n               </div>\n               <div class="listGroup">\n                    <div class="cardContent-list">\n                        <p class="list-title">Initiating Officer:</p>\n                        <p class="list-content">Motolani Oyinloye</p>\n                    </div>\n                    <div class="cardContent-list">\n                        <p class="list-title">Pick-up Branch:</p>\n                        <p class="list-content">635, Akin Adesola street, VI, Lagos</p>\n                    </div>\n               </div>\n               <div class="listGroup">\n                    <div class="cardContent-list">\n                        <p class="list-title">Item Type:</p>\n                        <p class="list-content">Parcel</p>\n                    </div>\n                    <div class="cardContent-list">\n                        <p class="list-title">Drop-off Branch:</p>\n                        <p class="list-content">Zone 2, wuse, Gwadalaga, Abuja</p>\n                    </div>\n               </div>\n           </div>\n           <div class="accept-wrapper" (click)="acceptRequest()">\n               <a class="acceptRequest">accept request</a>\n           </div>\n       </div>\n\n\n       <div class="card requestCard">\n          <div class="cardContent">\n              <div class="listGroup">\n                   <div class="cardContent-list">\n                       <p class="list-title">Delivery type:</p>\n                       <p class="list-content">Within Lagos</p>\n                   </div>\n                   <div class="cardContent-list">\n                       <p class="list-title">Rider’s Date Initiated:</p>\n                       <p class="list-content">3:00pm 12/05/2018</p>\n                   </div>\n              </div>\n              <div class="listGroup">\n                   <div class="cardContent-list">\n                       <p class="list-title">Initiating Officer:</p>\n                       <p class="list-content">Motolani Oyinloye</p>\n                   </div>\n                   <div class="cardContent-list">\n                       <p class="list-title">Pick-up Branch:</p>\n                       <p class="list-content">635, Akin Adesola street, VI, Lagos</p>\n                   </div>\n              </div>\n              <div class="listGroup">\n                   <div class="cardContent-list">\n                       <p class="list-title">Item Type:</p>\n                       <p class="list-content">Parcel</p>\n                   </div>\n                   <div class="cardContent-list">\n                       <p class="list-title">Drop-off Branch:</p>\n                       <p class="list-content">Zone 2, wuse, Gwadalaga, Abuja</p>\n                   </div>\n              </div>\n          </div>\n          <div class="accept-wrapper">\n              <a class="acceptRequest">accept request</a>\n          </div>\n      </div>\n      \n\n       <div class="card requestCard">\n            <div class="cardContent">\n                <div class="listGroup">\n                    <div class="cardContent-list">\n                        <p class="list-title">Delivery type:</p>\n                        <p class="list-content">Outside Lagos</p>\n                    </div>\n                    <div class="cardContent-list">\n                        <p class="list-title">Rider’s Date Initiated:</p>\n                        <p class="list-content">3:00pm 12/05/2018</p>\n                    </div>\n                </div>\n                <div class="listGroup">\n                    <div class="cardContent-list">\n                        <p class="list-title">Initiating Officer:</p>\n                        <p class="list-content">Faith Afolabi-Jumbo</p>\n                    </div>\n                    <div class="cardContent-list">\n                        <p class="list-title">Pick-up Branch:</p>\n                        <p class="list-content">635, Akin Adesola street, VI, Lagos</p>\n                    </div>\n                </div>\n                <div class="listGroup">\n                    <div class="cardContent-list">\n                        <p class="list-title">Item Type:</p>\n                        <p class="list-content">Parcel</p>\n                    </div>\n                    <div class="cardContent-list">\n                        <p class="list-title">Drop-off Branch:</p>\n                        <p class="list-content">Zone 2, wuse, Gwadalaga, Abuja</p>\n                    </div>\n                </div>\n            </div>\n            <div class="accept-wrapper">\n                <a class="acceptRequest">accept request</a>\n            </div>\n        </div>\n    </div>\n\n    <footer>\n        <div class="btn-group">\n            <button class="btn btn-footer btn-primary">Scan QR Code</button>\n            <button class="btn btn-footer btn-accent">Input Barcode</button>\n        </div>\n    </footer>\n</div>\n</ion-content>\n'/*ion-inline-end:"/Users/appdevmac1/ionic-projects/CourierApp/src/pages/mailroomdashboard/mailroomdashboard.html"*/,
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */]])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_3__providers_sessionprovider_sessionprovider__["a" /* SessionproviderProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__providers_sessionprovider_sessionprovider__["a" /* SessionproviderProvider */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* LoadingController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* LoadingController */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__providers_courierprovider_courierprovider__["a" /* CourierproviderProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__providers_courierprovider_courierprovider__["a" /* CourierproviderProvider */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */]) === "function" && _e || Object])
     ], MailroomdashboardPage);
     return MailroomdashboardPage;
+    var _a, _b, _c, _d, _e;
 }());
 
 //# sourceMappingURL=mailroomdashboard.js.map
