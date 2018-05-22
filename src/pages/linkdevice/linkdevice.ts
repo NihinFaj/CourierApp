@@ -17,21 +17,25 @@ import { SessionproviderProvider } from '../../providers/sessionprovider/session
 export class LinkdevicePage {
 
   constructor(public sessionProvider: SessionproviderProvider, public navCtrl: NavController, public navParams: NavParams) {
-    this.getRegisteredUser();
   }
 
-  registeredUser: any;
+  data = {
+    name: ""
+  };
 
   ionViewDidLoad() {
+    this.getRegisteredUser();    
   }
 
-  getRegisteredUser() {
-     this.registeredUser = this.sessionProvider.GetName();
-     console.log(this.registeredUser);
+  async getRegisteredUser() {
+    var derName = await this.sessionProvider.getStorage('userName');
+    this.data.name = derName;
   }
 
-  linkDevice() {
+  getAllRequests() {
+
     this.navCtrl.setRoot("RiderdashboardPage");
+    
   }
 
 }

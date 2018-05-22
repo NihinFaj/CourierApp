@@ -10,7 +10,7 @@ import { QRScanner, QRScannerStatus } from '@ionic-native/qr-scanner';
 import { CourierproviderProvider } from '../providers/courierprovider/courierprovider';
 import { HttpClientModule } from '@angular/common/http';
 import { Device } from '@ionic-native/device';
-import { Storage,IonicStorageModule } from '@ionic/storage';
+import { Storage,IonicStorageModule } from '@ionic/Storage';
 import { SessionproviderProvider } from '../providers/sessionprovider/sessionprovider';
 import { CryptoJS } from 'crypto-js';
 

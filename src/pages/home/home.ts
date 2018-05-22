@@ -87,8 +87,10 @@ export class HomePage {
 
     if (result.StatusCode == 1000) {
       this.loading.dismissAll();
-      this.sessionProvider.setName(this.data.Email);
-      this.navCtrl.setRoot("LinkdevicePage");
+
+      this.sessionProvider.setStorage('userName', this.data.Email).then(() => {
+        this.navCtrl.setRoot("LinkdevicePage");      
+        });
     }
     else {
       this.loading.dismissAll();      
