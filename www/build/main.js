@@ -7,7 +7,7 @@ webpackJsonp([5],{
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SessionproviderProvider; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_common_http__ = __webpack_require__(85);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_Storage__ = __webpack_require__(265);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_Storage__ = __webpack_require__(165);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_crypto_js__ = __webpack_require__(267);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_crypto_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_crypto_js__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -40,12 +40,10 @@ var SessionproviderProvider = /** @class */ (function () {
         this.name = name;
     };
     SessionproviderProvider.prototype.GetName = function () {
-        console.log("Name to be gotten is " + this.name);
         return this.name;
     };
     SessionproviderProvider.prototype.setStorage = function (key, val) {
         val = this.doEncrypt(val);
-        console.log("I just set the encrypted value" + val);
         return this.storage.set(key, val);
     };
     SessionproviderProvider.prototype.getStorage = function (key) {
@@ -57,7 +55,6 @@ var SessionproviderProvider = /** @class */ (function () {
     };
     SessionproviderProvider.prototype.doEncrypt = function (value) {
         // Encrypt
-        console.log(value);
         console.log(__WEBPACK_IMPORTED_MODULE_3_crypto_js__["AES"].encrypt(value, this.secretKey));
         return __WEBPACK_IMPORTED_MODULE_3_crypto_js__["AES"].encrypt(value, this.secretKey).toString();
     };
@@ -78,182 +75,7 @@ var SessionproviderProvider = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 121:
-/***/ (function(module, exports) {
-
-function webpackEmptyAsyncContext(req) {
-	// Here Promise.resolve().then() is used instead of new Promise() to prevent
-	// uncatched exception popping up in devtools
-	return Promise.resolve().then(function() {
-		throw new Error("Cannot find module '" + req + "'.");
-	});
-}
-webpackEmptyAsyncContext.keys = function() { return []; };
-webpackEmptyAsyncContext.resolve = webpackEmptyAsyncContext;
-module.exports = webpackEmptyAsyncContext;
-webpackEmptyAsyncContext.id = 121;
-
-/***/ }),
-
-/***/ 163:
-/***/ (function(module, exports, __webpack_require__) {
-
-var map = {
-	"../pages/linkdevice/linkdevice.module": [
-		319,
-		4
-	],
-	"../pages/mailroomdashboard/mailroomdashboard.module": [
-		320,
-		3
-	],
-	"../pages/riderdashboard/riderdashboard.module": [
-		321,
-		2
-	],
-	"../pages/successpage/successpage.module": [
-		322,
-		1
-	],
-	"../pages/viewrequest/viewrequest.module": [
-		323,
-		0
-	]
-};
-function webpackAsyncContext(req) {
-	var ids = map[req];
-	if(!ids)
-		return Promise.reject(new Error("Cannot find module '" + req + "'."));
-	return __webpack_require__.e(ids[1]).then(function() {
-		return __webpack_require__(ids[0]);
-	});
-};
-webpackAsyncContext.keys = function webpackAsyncContextKeys() {
-	return Object.keys(map);
-};
-webpackAsyncContext.id = 163;
-module.exports = webpackAsyncContext;
-
-/***/ }),
-
-/***/ 210:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return HomePage; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(31);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_courierprovider_courierprovider__ = __webpack_require__(211);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_sessionprovider_sessionprovider__ = __webpack_require__(110);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_device__ = __webpack_require__(212);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-
-
-
-var HomePage = /** @class */ (function () {
-    function HomePage(device, loadingCtrl, navCtrl, courierProvider, sessionProvider) {
-        this.device = device;
-        this.loadingCtrl = loadingCtrl;
-        this.navCtrl = navCtrl;
-        this.courierProvider = courierProvider;
-        this.sessionProvider = sessionProvider;
-        this.data = {
-            Email: "",
-            Status: "",
-            DeviceId: ""
-        };
-        this.getAllUserURL = 'http://gtmobile.gtbank.com/CourierAPI/api/Courier/get-all-names';
-        this.getAllRequest = 'http://gtmobile.gtbank.com/CourierAPI/api/Courier/get-all-requests';
-        this.registerUserURL = 'http://gtmobile.gtbank.com/CourierAPI/api/Courier/register-user';
-        this.getAllUser();
-        this.getDeviceInfo();
-    }
-    HomePage.prototype.getDeviceInfo = function () {
-        console.log('Device UUID is: ' + this.device.uuid);
-        console.log('Cordova is: ' + this.device.cordova);
-        console.log('Device Model is: ' + this.device.model);
-        console.log('Platform is: ' + this.device.platform);
-        console.log('OS Version is: ' + this.device.version);
-        console.log('Manufacturer is: ' + this.device.manufacturer);
-        console.log('Serial Number is: ' + this.device.serial);
-    };
-    HomePage.prototype.getAllUser = function () {
-        var _this = this;
-        this.loading = this.loadingCtrl.create({ content: "" });
-        this.loading.present();
-        this.courierProvider.callService(this.getAllUserURL)
-            .then(function (result) {
-            if (result.StatusCode == 1000) {
-                _this.loading.dismissAll();
-                _this.Users = JSON.parse(result.Message);
-                console.log(_this.Users);
-            }
-            else {
-                _this.loading.dismissAll();
-                _this.courierProvider.presentAlert(result.Error);
-            }
-        }, function (err) {
-            _this.loading.dismissAll();
-            console.log("Call entered exception");
-            console.log(err);
-            _this.courierProvider.presentAlert("Service not available at the moment, please try again later");
-        });
-    };
-    HomePage.prototype.registerUser = function () {
-        var _this = this;
-        if (!this.data.Email) {
-            this.courierProvider.presentAlert("Please select a name");
-            return false;
-        }
-        this.data.DeviceId = this.device.uuid || "123456";
-        this.data.Status = "1";
-        console.log(this.data);
-        this.loading = this.loadingCtrl.create({ content: "Registering User..." });
-        this.loading.present();
-        this.courierProvider.callServicePost(this.registerUserURL, this.data)
-            .then(function (result) {
-            if (result.StatusCode == 1000) {
-                _this.loading.dismissAll();
-                _this.sessionProvider.setStorage('userName', _this.data.Email).then(function () {
-                    _this.navCtrl.setRoot("LinkdevicePage");
-                });
-            }
-            else {
-                _this.loading.dismissAll();
-                _this.courierProvider.presentAlert(result.Error);
-            }
-        }, function (err) {
-            _this.loading.dismissAll();
-            console.log("Call entered exception");
-            console.log(err);
-            _this.courierProvider.presentAlert("Service not available at the moment, please try again later");
-        });
-    };
-    HomePage = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-home',template:/*ion-inline-start:"/Users/appdevmac1/ionic-projects/CourierApp/src/pages/home/home.html"*/'<!-- <ion-header>\n  <ion-navbar>\n    <ion-title>\n      Courier App\n    </ion-title>\n  </ion-navbar>\n</ion-header> -->\n\n<ion-content  style="background-color:white">\n\n  <div class="app-wrapper">\n    <header class="header">\n        <div class="title-wrapper">\n            <h1 class="title">Courier Delivery</h1>\n        </div>\n    </header>\n\n    <div class="forms-wrapper mt-100">\n        <h4 class="signinPrompt">Register here</h4>\n\n        <form class="mt-30">\n\n            <div class="form-group">\n                <ion-select [(ngModel)]="data.Email" class="form-control select-control" name="userName" placeholder="Select a name">\n                    <ion-option *ngFor="let x of this.Users" [value]="x.Email_Address"> {{ x.Courier_Name }}       \n                    </ion-option>\n                </ion-select>\n            </div>\n\n            <button class="btn btn-primary" (click)="registerUser()">Register</button>\n        </form>\n    </div>\n</div>\n</ion-content>\n'/*ion-inline-end:"/Users/appdevmac1/ionic-projects/CourierApp/src/pages/home/home.html"*/
-        }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_4__ionic_native_device__["a" /* Device */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* LoadingController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */], __WEBPACK_IMPORTED_MODULE_2__providers_courierprovider_courierprovider__["a" /* CourierproviderProvider */], __WEBPACK_IMPORTED_MODULE_3__providers_sessionprovider_sessionprovider__["a" /* SessionproviderProvider */]])
-    ], HomePage);
-    return HomePage;
-}());
-
-//# sourceMappingURL=home.js.map
-
-/***/ }),
-
-/***/ 211:
+/***/ 111:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -342,13 +164,189 @@ var CourierproviderProvider = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 214:
+/***/ 122:
+/***/ (function(module, exports) {
+
+function webpackEmptyAsyncContext(req) {
+	// Here Promise.resolve().then() is used instead of new Promise() to prevent
+	// uncatched exception popping up in devtools
+	return Promise.resolve().then(function() {
+		throw new Error("Cannot find module '" + req + "'.");
+	});
+}
+webpackEmptyAsyncContext.keys = function() { return []; };
+webpackEmptyAsyncContext.resolve = webpackEmptyAsyncContext;
+module.exports = webpackEmptyAsyncContext;
+webpackEmptyAsyncContext.id = 122;
+
+/***/ }),
+
+/***/ 164:
+/***/ (function(module, exports, __webpack_require__) {
+
+var map = {
+	"../pages/linkdevice/linkdevice.module": [
+		317,
+		4
+	],
+	"../pages/mailroomdashboard/mailroomdashboard.module": [
+		318,
+		3
+	],
+	"../pages/riderdashboard/riderdashboard.module": [
+		319,
+		2
+	],
+	"../pages/successpage/successpage.module": [
+		320,
+		1
+	],
+	"../pages/viewrequest/viewrequest.module": [
+		321,
+		0
+	]
+};
+function webpackAsyncContext(req) {
+	var ids = map[req];
+	if(!ids)
+		return Promise.reject(new Error("Cannot find module '" + req + "'."));
+	return __webpack_require__.e(ids[1]).then(function() {
+		return __webpack_require__(ids[0]);
+	});
+};
+webpackAsyncContext.keys = function webpackAsyncContextKeys() {
+	return Object.keys(map);
+};
+webpackAsyncContext.id = 164;
+module.exports = webpackAsyncContext;
+
+/***/ }),
+
+/***/ 210:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return HomePage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(31);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_courierprovider_courierprovider__ = __webpack_require__(111);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_sessionprovider_sessionprovider__ = __webpack_require__(110);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_device__ = __webpack_require__(211);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+
+var HomePage = /** @class */ (function () {
+    function HomePage(device, loadingCtrl, navCtrl, courierProvider, sessionProvider) {
+        this.device = device;
+        this.loadingCtrl = loadingCtrl;
+        this.navCtrl = navCtrl;
+        this.courierProvider = courierProvider;
+        this.sessionProvider = sessionProvider;
+        this.data = {
+            Email: "",
+            Status: "",
+            DeviceId: ""
+        };
+        this.getAllUserURL = 'http://gtmobile.gtbank.com/CourierAPI/api/Courier/get-all-names';
+        this.registerUserURL = 'http://gtmobile.gtbank.com/CourierAPI/api/Courier/register-user';
+        this.getAllUser();
+        this.getDeviceInfo();
+    }
+    HomePage.prototype.getDeviceInfo = function () {
+        console.log('Device UUID is: ' + this.device.uuid);
+        console.log('Cordova is: ' + this.device.cordova);
+        console.log('Device Model is: ' + this.device.model);
+        console.log('Platform is: ' + this.device.platform);
+        console.log('OS Version is: ' + this.device.version);
+        console.log('Manufacturer is: ' + this.device.manufacturer);
+        console.log('Serial Number is: ' + this.device.serial);
+    };
+    HomePage.prototype.getAllUser = function () {
+        var _this = this;
+        this.loading = this.loadingCtrl.create({ content: "" });
+        this.loading.present();
+        this.courierProvider.callService(this.getAllUserURL)
+            .then(function (result) {
+            if (result.StatusCode == 1000) {
+                _this.loading.dismissAll();
+                _this.Users = JSON.parse(result.Message);
+                console.log(_this.Users);
+            }
+            else {
+                _this.loading.dismissAll();
+                _this.courierProvider.presentAlert(result.Error);
+            }
+        }, function (err) {
+            _this.loading.dismissAll();
+            console.log("Call entered exception");
+            console.log(err);
+            _this.courierProvider.presentAlert("Service not available at the moment, please try again later");
+        });
+    };
+    HomePage.prototype.registerUser = function () {
+        var _this = this;
+        if (!this.data.Email) {
+            this.courierProvider.presentAlert("Please select a name");
+            return false;
+        }
+        this.data.DeviceId = this.device.uuid || "123456";
+        this.data.Status = "1";
+        console.log(this.data);
+        // var name = document.getElementById("userName");
+        // var selectedBillerName = name.options[name.selectedIndex].text;
+        this.loading = this.loadingCtrl.create({ content: "Registering User..." });
+        this.loading.present();
+        this.courierProvider.callServicePost(this.registerUserURL, this.data)
+            .then(function (result) {
+            if (result.StatusCode == 1000) {
+                _this.loading.dismissAll();
+                _this.sessionProvider.setStorage('userName', _this.data.Email).then(function () {
+                    _this.navCtrl.setRoot("LinkdevicePage");
+                });
+            }
+            else {
+                _this.loading.dismissAll();
+                _this.courierProvider.presentAlert(result.Error);
+            }
+        }, function (err) {
+            _this.loading.dismissAll();
+            console.log("Call entered exception");
+            console.log(err);
+            _this.courierProvider.presentAlert("Service not available at the moment, please try again later");
+        });
+    };
+    HomePage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
+            selector: 'page-home',template:/*ion-inline-start:"/Users/appdevmac1/ionic-projects/CourierApp/src/pages/home/home.html"*/'<!-- <ion-header>\n  <ion-navbar>\n    <ion-title>\n      Courier App\n    </ion-title>\n  </ion-navbar>\n</ion-header> -->\n\n<ion-content  style="background-color:white">\n\n  <div class="app-wrapper">\n    <header class="header">\n        <div class="title-wrapper">\n            <h1 class="title">Courier Delivery</h1>\n        </div>\n    </header>\n\n    <div class="forms-wrapper mt-100">\n        <h4 class="signinPrompt">Register here</h4>\n\n        <form class="mt-30">\n\n            <div class="form-group">\n                <ion-select [(ngModel)]="data.Email" class="form-control select-control" name="userName" placeholder="Select a name">\n                    <ion-option *ngFor="let x of this.Users" [value]="x.Email_Address"> {{ x.Courier_Name }}       \n                    </ion-option>\n                </ion-select>\n            </div>\n\n            <button class="btn btn-primary" (click)="registerUser()">Register</button>\n        </form>\n    </div>\n</div>\n</ion-content>\n'/*ion-inline-end:"/Users/appdevmac1/ionic-projects/CourierApp/src/pages/home/home.html"*/
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_4__ionic_native_device__["a" /* Device */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* LoadingController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */], __WEBPACK_IMPORTED_MODULE_2__providers_courierprovider_courierprovider__["a" /* CourierproviderProvider */], __WEBPACK_IMPORTED_MODULE_3__providers_sessionprovider_sessionprovider__["a" /* SessionproviderProvider */]])
+    ], HomePage);
+    return HomePage;
+}());
+
+//# sourceMappingURL=home.js.map
+
+/***/ }),
+
+/***/ 213:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__ = __webpack_require__(215);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app_module__ = __webpack_require__(235);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__ = __webpack_require__(214);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app_module__ = __webpack_require__(234);
 
 
 Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* platformBrowserDynamic */])().bootstrapModule(__WEBPACK_IMPORTED_MODULE_1__app_module__["a" /* AppModule */]);
@@ -356,7 +354,7 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 
 /***/ }),
 
-/***/ 235:
+/***/ 234:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -368,11 +366,11 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_status_bar__ = __webpack_require__(209);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__app_component__ = __webpack_require__(316);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_home_home__ = __webpack_require__(210);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ionic_native_qr_scanner__ = __webpack_require__(213);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__providers_courierprovider_courierprovider__ = __webpack_require__(211);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ionic_native_qr_scanner__ = __webpack_require__(212);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__providers_courierprovider_courierprovider__ = __webpack_require__(111);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__angular_common_http__ = __webpack_require__(85);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__ionic_native_device__ = __webpack_require__(212);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__ionic_Storage__ = __webpack_require__(265);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__ionic_native_device__ = __webpack_require__(211);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__ionic_Storage__ = __webpack_require__(165);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__providers_sessionprovider_sessionprovider__ = __webpack_require__(110);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -485,5 +483,5 @@ var MyApp = /** @class */ (function () {
 
 /***/ })
 
-},[214]);
+},[213]);
 //# sourceMappingURL=main.js.map

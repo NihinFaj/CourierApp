@@ -29,7 +29,6 @@ export class HomePage {
   }
 
   getAllUserURL = 'http://gtmobile.gtbank.com/CourierAPI/api/Courier/get-all-names';
-  getAllRequest = 'http://gtmobile.gtbank.com/CourierAPI/api/Courier/get-all-requests';
   registerUserURL = 'http://gtmobile.gtbank.com/CourierAPI/api/Courier/register-user';
 
   getDeviceInfo(){
@@ -79,6 +78,9 @@ export class HomePage {
     this.data.Status = "1";
 
     console.log(this.data);
+
+    // var name = document.getElementById("userName");
+    // var selectedBillerName = name.options[name.selectedIndex].text;
 
     this.loading = this.loadingCtrl.create({ content: "Registering User..." });
     this.loading.present();

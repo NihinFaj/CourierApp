@@ -24,13 +24,11 @@ export class SessionproviderProvider {
   }
   
   public GetName(){
-    console.log("Name to be gotten is " + this.name);    
     return this.name;
   }
 
   public setStorage(key: string, val: string){
     val = this.doEncrypt(val);
-    console.log("I just set the encrypted value" + val);
     return this.storage.set(key, val);
   }
 
@@ -43,7 +41,6 @@ export class SessionproviderProvider {
 
   public doEncrypt(value: string): string {
     // Encrypt
-    console.log(value);
     console.log(CryptoJS.AES.encrypt(value, this.secretKey));
     return CryptoJS.AES.encrypt(value, this.secretKey).toString();
   }
