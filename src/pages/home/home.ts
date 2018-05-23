@@ -31,7 +31,7 @@ export class HomePage {
   getAllUserURL = 'http://gtmobile.gtbank.com/CourierAPI/api/Courier/get-all-names';
   registerUserURL = 'http://gtmobile.gtbank.com/CourierAPI/api/Courier/register-user';
 
-  getDeviceInfo(){
+  getDeviceInfo() {
     console.log('Device UUID is: ' + this.device.uuid);
     console.log('Cordova is: ' + this.device.cordova);
     console.log('Device Model is: ' + this.device.model);
