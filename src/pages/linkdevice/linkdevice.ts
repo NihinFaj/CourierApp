@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { SessionproviderProvider } from '../../providers/sessionprovider/sessionprovider';
+import { LoadingController } from 'ionic-angular';
+import { CourierproviderProvider } from '../../providers/courierprovider/courierprovider';
+
 
 /**
  * Generated class for the LinkdevicePage page.
@@ -16,26 +19,25 @@ import { SessionproviderProvider } from '../../providers/sessionprovider/session
 })
 export class LinkdevicePage {
 
-  constructor(public sessionProvider: SessionproviderProvider, public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public courierProvider: CourierproviderProvider, public sessionProvider: SessionproviderProvider, public navCtrl: NavController, public navParams: NavParams, public loadingCtrl: LoadingController) {
   }
-
-  data = {
-    name: ""
-  };
 
   ionViewDidLoad() {
-    this.getRegisteredUser();    
   }
 
-  async getRegisteredUser() {
-    var derName = await this.sessionProvider.getStorage('userName');
-    this.data.name = derName;
-  }
+  // async getUserRole() {
+  //   var userRole = await this.sessionProvider.getStorage('role');
+  //   this.role = userRole;
+  // }
 
-  getAllRequests() {
+  // GoToRequests() {
+    // this.sessionProvider.setStorage('roleValue', this.role).then(() => {
+            // this.navCtrl.setRoot("RiderdashboardPage");      
+            // });
+  // }
 
-    this.navCtrl.setRoot("RiderdashboardPage");
-    
+  GoToRequests() {
+    this.navCtrl.setRoot("RiderdashboardPage");      
   }
 
 }
