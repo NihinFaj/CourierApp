@@ -64,8 +64,8 @@ export class RiderdashboardPage {
   );
   }
 
-    acceptRequest(reqDets) {
-      this.sessionProvider.setStorage('requestDetails', reqDets).then(() => {
+    acceptRequest(reqDets: any) {
+      this.sessionProvider.setStorage('requestDetails', JSON.stringify(reqDets)).then(() => {
           this.navCtrl.setRoot("ViewrequestPage");      
         });
   }

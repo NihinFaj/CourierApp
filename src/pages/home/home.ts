@@ -84,9 +84,6 @@ export class HomePage {
 
     console.log(this.data);
 
-    // var name = document.getElementById("userName");
-    // var selectedBillerName = name.options[name.selectedIndex].text;
-
     this.loading = this.loadingCtrl.create({ content: "Registering User..." });
     this.loading.present();
     this.courierProvider.callServicePost(this.registerUserURL, this.data)

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { QRScanner, QRScannerStatus } from '@ionic-native/qr-scanner';
+import { SessionproviderProvider } from '../../providers/sessionprovider/sessionprovider';
 
 /**
  * Generated class for the ViewrequestPage page.
@@ -16,12 +17,17 @@ import { QRScanner, QRScannerStatus } from '@ionic-native/qr-scanner';
 })
 export class ViewrequestPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private qrScanner: QRScanner) {
+  constructor(public sessionProvider: SessionproviderProvider, public navCtrl: NavController, public navParams: NavParams, private qrScanner: QRScanner) {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad ViewrequestPage');
+    this.getUserName();
+    this.getRequestDetails();
   }
+
+  userEmail: any;
+
+  requestDetails = {};
 
   scanQR() {
     this.qrScanner.prepare()
@@ -48,6 +54,19 @@ export class ViewrequestPage {
       })
       .catch((e: any) => 
         console.log('Error is', e));
+      }
+
+      async getUserName() {
+        var userName = await this.sessionProvider.getStorage('userName');
+        this.userEmail = userName;
+        console.log(this.userEmail);
+        
+      }
+
+      async getRequestDetails() {
+        var reqDet = await this.sessionProvider.getStorage('requestDetails');
+        this.requestDetails = JSON.parse(reqDet);
+        console.log(this.requestDetails);
       }
       
 

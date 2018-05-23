@@ -41,7 +41,6 @@ export class SessionproviderProvider {
 
   public doEncrypt(value: string): string {
     // Encrypt
-    console.log(CryptoJS.AES.encrypt(value, this.secretKey));
     return CryptoJS.AES.encrypt(value, this.secretKey).toString();
   }
 
