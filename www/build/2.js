@@ -88,8 +88,8 @@ var RiderdashboardPage = /** @class */ (function () {
             .then(function (result) {
             if (result.StatusCode == 1000) {
                 _this.loading.dismissAll();
-                _this.allRequests = JSON.parse(result.Message);
-                console.log(_this.allRequests);
+                // this.allRequests = JSON.parse(result.Message);
+                // console.log(this.allRequests);        
             }
             else {
                 _this.loading.dismissAll();

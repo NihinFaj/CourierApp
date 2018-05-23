@@ -23,12 +23,17 @@ export class LinkdevicePage {
   }
 
   ionViewDidLoad() {
+    this.getUserName();
   }
 
-  // async getUserRole() {
-  //   var userRole = await this.sessionProvider.getStorage('role');
-  //   this.role = userRole;
-  // }
+  data = {
+    name: ""
+  }
+
+  async getUserName() {
+    var userName = await this.sessionProvider.getStorage('userName');
+    this.data.name = userName;
+  }
 
   // GoToRequests() {
     // this.sessionProvider.setStorage('roleValue', this.role).then(() => {

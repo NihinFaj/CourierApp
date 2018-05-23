@@ -40,8 +40,8 @@ export class RiderdashboardPage {
 
       if (result.StatusCode == 1000) {
         this.loading.dismissAll();      
-        this.allRequests = JSON.parse(result.Message);
-        console.log(this.allRequests);        
+        // this.allRequests = JSON.parse(result.Message);
+        // console.log(this.allRequests);        
       }
       else {
         this.loading.dismissAll();      
