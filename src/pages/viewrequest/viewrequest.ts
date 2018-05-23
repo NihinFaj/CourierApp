@@ -29,7 +29,7 @@ export class ViewrequestPage {
 
   userEmail: any;
   loading: any;
-  submitRiderPickupURL = 'http://gtmobile.gtbank.com/CourierAPI/api/Courier/submit-rider-pickup';
+  submitRiderPickupURL = 'http://gtmobile.gtbank.com/CourierAPI/api/Courier/submit-rider-pickup-request';
 
   requestDetails = {};
 
