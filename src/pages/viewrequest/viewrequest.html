@@ -37,10 +37,10 @@
             <p class="smText mt-30">OR</p>
 
             <div class="form-group mt-30">
-                <label class="smText">Input barcode number</label>
+                <label class="smText">Input QRCode digits</label>
                 <div class="input-group">
-                    <input class="form-control input-code" placeholder="e.g. awsedrfgtyhuj12sd4">
-                    <button class="btn btn-sm" (click)="viewRequest()">Confirm</button>
+                    <input [(ngModel)]="value.QrCode" class="form-control input-code" placeholder="e.g. awsedrfgtyhuj12sd4">
+                    <button class="btn btn-sm" (click)="submitRequestManually()">Confirm</button>
                 </div>
             </div>
         </div>
