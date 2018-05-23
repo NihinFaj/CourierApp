@@ -24,124 +24,47 @@
         </div>
     </header> -->
 
-    <div class="cards-wrapper mt-10">
+    <div class="cards-wrapper mt-10" >
 
-       <div class="card requestCard">
+       <div class="card requestCard" *ngFor="let request of this.allRequests">
            <div class="cardContent">
                <div class="listGroup">
                     <div class="cardContent-list">
                         <p class="list-title">Delivery type:</p>
-                        <p class="list-content">Within Lagos</p>
+                        <p class="list-content">{{ request.Delivery_Type }}</p>
                     </div>
                     <div class="cardContent-list">
                         <p class="list-title">Date Initiated:</p>
-                        <p class="list-content">3:00pm 12/05/2018</p>
+                        <p class="list-content">{{ request.Initiating_Date }}</p>
                     </div>
                </div>
                <div class="listGroup">
                     <div class="cardContent-list">
                         <p class="list-title">Initiating Officer:</p>
-                        <p class="list-content">Motolani Oyinloye</p>
+                        <p class="list-content">{{ request.Initiating_Officer }}</p>
                     </div>
                     <div class="cardContent-list">
                         <p class="list-title">Pick-up Branch:</p>
-                        <p class="list-content">635, Akin Adesola street, VI, Lagos</p>
+                        <p class="list-content">{{ request.PickUp_Branch }}</p>
                     </div>
                </div>
                <div class="listGroup">
                     <div class="cardContent-list">
                         <p class="list-title">Item Type:</p>
-                        <p class="list-content">Parcel</p>
+                        <p class="list-content">{{ request.Item_Type }}</p>
                     </div>
                     <div class="cardContent-list">
                         <p class="list-title">Drop-off Branch:</p>
-                        <p class="list-content">Zone 2, wuse, Gwadalaga, Abuja</p>
+                        <p class="list-content">{{ request.Delivery_Branch }}</p>
                     </div>
                </div>
            </div>
-           <div class="accept-wrapper" (click)="acceptRequest()">
+           <div class="accept-wrapper" (click)="acceptRequest(request)">
                <a class="acceptRequest">accept request</a>
            </div>
        </div>
-
-
-       <div class="card requestCard">
-          <div class="cardContent">
-              <div class="listGroup">
-                   <div class="cardContent-list">
-                       <p class="list-title">Delivery type:</p>
-                       <p class="list-content">Within Lagos</p>
-                   </div>
-                   <div class="cardContent-list">
-                       <p class="list-title">Date Initiated:</p>
-                       <p class="list-content">3:00pm 12/05/2018</p>
-                   </div>
-              </div>
-              <div class="listGroup">
-                   <div class="cardContent-list">
-                       <p class="list-title">Initiating Officer:</p>
-                       <p class="list-content">Motolani Oyinloye</p>
-                   </div>
-                   <div class="cardContent-list">
-                       <p class="list-title">Pick-up Branch:</p>
-                       <p class="list-content">635, Akin Adesola street, VI, Lagos</p>
-                   </div>
-              </div>
-              <div class="listGroup">
-                   <div class="cardContent-list">
-                       <p class="list-title">Item Type:</p>
-                       <p class="list-content">Parcel</p>
-                   </div>
-                   <div class="cardContent-list">
-                       <p class="list-title">Drop-off Branch:</p>
-                       <p class="list-content">Zone 2, wuse, Gwadalaga, Abuja</p>
-                   </div>
-              </div>
-          </div>
-          <div class="accept-wrapper">
-              <a class="acceptRequest">accept request</a>
-          </div>
-      </div>
-      
-
-       <div class="card requestCard">
-            <div class="cardContent">
-                <div class="listGroup">
-                    <div class="cardContent-list">
-                        <p class="list-title">Delivery type:</p>
-                        <p class="list-content">Outside Lagos</p>
-                    </div>
-                    <div class="cardContent-list">
-                        <p class="list-title">Date Initiated:</p>
-                        <p class="list-content">3:00pm 12/05/2018</p>
-                    </div>
-                </div>
-                <div class="listGroup">
-                    <div class="cardContent-list">
-                        <p class="list-title">Initiating Officer:</p>
-                        <p class="list-content">Faith Afolabi-Jumbo</p>
-                    </div>
-                    <div class="cardContent-list">
-                        <p class="list-title">Pick-up Branch:</p>
-                        <p class="list-content">635, Akin Adesola street, VI, Lagos</p>
-                    </div>
-                </div>
-                <div class="listGroup">
-                    <div class="cardContent-list">
-                        <p class="list-title">Item Type:</p>
-                        <p class="list-content">Parcel</p>
-                    </div>
-                    <div class="cardContent-list">
-                        <p class="list-title">Drop-off Branch:</p>
-                        <p class="list-content">Zone 2, wuse, Gwadalaga, Abuja</p>
-                    </div>
-                </div>
-            </div>
-            <div class="accept-wrapper">
-                <a class="acceptRequest">accept request</a>
-            </div>
-        </div>
     </div>
+
 
     <footer>
         <div class="btn-group">

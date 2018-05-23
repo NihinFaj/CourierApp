@@ -40,8 +40,14 @@ export class RiderdashboardPage {
 
       if (result.StatusCode == 1000) {
         this.loading.dismissAll();      
-        // this.allRequests = JSON.parse(result.Message);
-        // console.log(this.allRequests);        
+        this.allRequests = JSON.parse(result.Message);
+        console.log(this.allRequests);
+
+        if(this.allRequests.length === 0) {
+        this.courierProvider.presentAlert("There are no available request at the moment");   
+        return false;            
+        }
+
       }
       else {
         this.loading.dismissAll();      

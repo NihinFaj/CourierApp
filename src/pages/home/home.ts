@@ -50,7 +50,12 @@ export class HomePage {
       if (result.StatusCode == 1000){
         this.loading.dismissAll();      
         this.Users = JSON.parse(result.Message);
-        console.log(this.Users);        
+        console.log(this.Users);                
+
+        if(this.Users.length === 0) {
+          this.courierProvider.presentAlert("There are no available users at the moment.");     
+          return false;     
+          }
       }
       else {
         this.loading.dismissAll();      
