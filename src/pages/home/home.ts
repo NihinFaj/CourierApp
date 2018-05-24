@@ -50,7 +50,12 @@ export class HomePage {
       if (result.StatusCode == 1000){
         this.loading.dismissAll();      
         this.Users = JSON.parse(result.Message);
-        console.log(this.Users);        
+        console.log(this.Users);                
+
+        if(this.Users.length === 0) {
+          this.courierProvider.presentAlert("There are no available users at the moment.");     
+          return false;     
+          }
       }
       else {
         this.loading.dismissAll();      
@@ -78,9 +83,6 @@ export class HomePage {
     this.data.Status = "1";
 
     console.log(this.data);
-
-    // var name = document.getElementById("userName");
-    // var selectedBillerName = name.options[name.selectedIndex].text;
 
     this.loading = this.loadingCtrl.create({ content: "Registering User..." });
     this.loading.present();

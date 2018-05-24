@@ -55,7 +55,6 @@ var SessionproviderProvider = /** @class */ (function () {
     };
     SessionproviderProvider.prototype.doEncrypt = function (value) {
         // Encrypt
-        console.log(__WEBPACK_IMPORTED_MODULE_3_crypto_js__["AES"].encrypt(value, this.secretKey));
         return __WEBPACK_IMPORTED_MODULE_3_crypto_js__["AES"].encrypt(value, this.secretKey).toString();
     };
     SessionproviderProvider.prototype.doDecrypt = function (value) {
@@ -198,11 +197,11 @@ var map = {
 		2
 	],
 	"../pages/successpage/successpage.module": [
-		320,
+		321,
 		1
 	],
 	"../pages/viewrequest/viewrequest.module": [
-		321,
+		320,
 		0
 	]
 };
@@ -283,6 +282,10 @@ var HomePage = /** @class */ (function () {
                 _this.loading.dismissAll();
                 _this.Users = JSON.parse(result.Message);
                 console.log(_this.Users);
+                if (_this.Users.length === 0) {
+                    _this.courierProvider.presentAlert("There are no available users at the moment.");
+                    return false;
+                }
             }
             else {
                 _this.loading.dismissAll();
@@ -304,8 +307,6 @@ var HomePage = /** @class */ (function () {
         this.data.DeviceId = this.device.uuid || "123456";
         this.data.Status = "1";
         console.log(this.data);
-        // var name = document.getElementById("userName");
-        // var selectedBillerName = name.options[name.selectedIndex].text;
         this.loading = this.loadingCtrl.create({ content: "Registering User..." });
         this.loading.present();
         this.courierProvider.callServicePost(this.registerUserURL, this.data)
@@ -329,7 +330,7 @@ var HomePage = /** @class */ (function () {
     };
     HomePage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-home',template:/*ion-inline-start:"/Users/appdevmacbook2/Documents/courier-app/app/src/pages/home/home.html"*/'<!-- <ion-header>\n  <ion-navbar>\n    <ion-title>\n      Courier App\n    </ion-title>\n  </ion-navbar>\n</ion-header> -->\n\n<ion-content  style="background-color:white">\n\n  <div class="app-wrapper">\n    <header class="header">\n        <div class="title-wrapper">\n            <h1 class="title">Courier Delivery</h1>\n        </div>\n    </header>\n\n    <div class="forms-wrapper mt-100">\n        <h4 class="signinPrompt">Register here</h4>\n\n        <form class="mt-30">\n\n            <div class="form-group">\n                <ion-select [(ngModel)]="data.Email" class="form-control select-control" name="userName" placeholder="Select a name">\n                    <ion-option *ngFor="let x of this.Users" [value]="x.Email_Address"> {{ x.Courier_Name }}       \n                    </ion-option>\n                </ion-select>\n            </div>\n\n            <button class="btn btn-primary" (click)="registerUser()">Register</button>\n        </form>\n    </div>\n</div>\n</ion-content>\n'/*ion-inline-end:"/Users/appdevmacbook2/Documents/courier-app/app/src/pages/home/home.html"*/
+            selector: 'page-home',template:/*ion-inline-start:"/Users/appdevmac1/ionic-projects/CourierApp/src/pages/home/home.html"*/'<!-- <ion-header>\n  <ion-navbar>\n    <ion-title>\n      Courier App\n    </ion-title>\n  </ion-navbar>\n</ion-header> -->\n\n<ion-content  style="background-color:white">\n\n  <div class="app-wrapper">\n    <header class="header">\n        <div class="title-wrapper">\n            <h1 class="title">Courier Delivery</h1>\n        </div>\n    </header>\n\n    <div class="forms-wrapper mt-100">\n        <h4 class="signinPrompt">Register here</h4>\n\n        <form class="mt-30">\n\n            <div class="form-group">\n                <ion-select [(ngModel)]="data.Email" class="form-control select-control" name="userName" placeholder="Select a name">\n                    <ion-option *ngFor="let x of this.Users" [value]="x.Email_Address"> {{ x.Courier_Name }}       \n                    </ion-option>\n                </ion-select>\n            </div>\n\n            <button class="btn btn-primary" (click)="registerUser()">Register</button>\n        </form>\n    </div>\n</div>\n</ion-content>\n'/*ion-inline-end:"/Users/appdevmac1/ionic-projects/CourierApp/src/pages/home/home.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_4__ionic_native_device__["a" /* Device */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* LoadingController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */], __WEBPACK_IMPORTED_MODULE_2__providers_courierprovider_courierprovider__["a" /* CourierproviderProvider */], __WEBPACK_IMPORTED_MODULE_3__providers_sessionprovider_sessionprovider__["a" /* SessionproviderProvider */]])
     ], HomePage);
@@ -407,8 +408,8 @@ var AppModule = /** @class */ (function () {
                         { loadChildren: '../pages/linkdevice/linkdevice.module#LinkdevicePageModule', name: 'LinkdevicePage', segment: 'linkdevice', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/mailroomdashboard/mailroomdashboard.module#MailroomdashboardPageModule', name: 'MailroomdashboardPage', segment: 'mailroomdashboard', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/riderdashboard/riderdashboard.module#RiderdashboardPageModule', name: 'RiderdashboardPage', segment: 'riderdashboard', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/successpage/successpage.module#SuccesspagePageModule', name: 'SuccesspagePage', segment: 'successpage', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/viewrequest/viewrequest.module#ViewrequestPageModule', name: 'ViewrequestPage', segment: 'viewrequest', priority: 'low', defaultHistory: [] }
+                        { loadChildren: '../pages/viewrequest/viewrequest.module#ViewrequestPageModule', name: 'ViewrequestPage', segment: 'viewrequest', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/successpage/successpage.module#SuccesspagePageModule', name: 'SuccesspagePage', segment: 'successpage', priority: 'low', defaultHistory: [] }
                     ]
                 }),
                 __WEBPACK_IMPORTED_MODULE_9__angular_common_http__["b" /* HttpClientModule */],
@@ -472,7 +473,7 @@ var MyApp = /** @class */ (function () {
         });
     }
     MyApp = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({template:/*ion-inline-start:"/Users/appdevmacbook2/Documents/courier-app/app/src/app/app.html"*/'<ion-nav [root]="rootPage"></ion-nav>\n'/*ion-inline-end:"/Users/appdevmacbook2/Documents/courier-app/app/src/app/app.html"*/
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({template:/*ion-inline-start:"/Users/appdevmac1/ionic-projects/CourierApp/src/app/app.html"*/'<ion-nav [root]="rootPage"></ion-nav>\n'/*ion-inline-end:"/Users/appdevmac1/ionic-projects/CourierApp/src/app/app.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* Platform */], __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__["a" /* StatusBar */], __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */]])
     ], MyApp);

@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { QRScanner, QRScannerStatus } from '@ionic-native/qr-scanner';
+import { SessionproviderProvider } from '../../providers/sessionprovider/sessionprovider';
+import { CourierproviderProvider } from '../../providers/courierprovider/courierprovider';
+import { LoadingController } from 'ionic-angular';
 
 /**
  * Generated class for the ViewrequestPage page.
@@ -16,11 +19,23 @@ import { QRScanner, QRScannerStatus } from '@ionic-native/qr-scanner';
 })
 export class ViewrequestPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private qrScanner: QRScanner) {
+  constructor( public loadingCtrl: LoadingController, public courierProvider: CourierproviderProvider, public sessionProvider: SessionproviderProvider, public navCtrl: NavController, public navParams: NavParams, private qrScanner: QRScanner) {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad ViewrequestPage');
+    this.getUserName();
+    this.getRequestDetails();
+  }
+
+  userEmail: any;
+  loading: any;
+  submitRiderPickupURL = 'http://gtmobile.gtbank.com/CourierAPI/api/Courier/submit-rider-pickup-request';
+
+  requestDetails = {};
+
+  value = {
+    QrCode: "",
+    RiderName: ""
   }
 
   scanQR() {
@@ -49,11 +64,60 @@ export class ViewrequestPage {
       .catch((e: any) => 
         console.log('Error is', e));
       }
+
+      async getUserName() {
+        var userName = await this.sessionProvider.getStorage('userName');
+        this.userEmail = userName;
+        console.log(this.userEmail);
+        
+      }
+
+      async getRequestDetails() {
+        var reqDet = await this.sessionProvider.getStorage('requestDetails');
+        this.requestDetails = JSON.parse(reqDet);
+        console.log(this.requestDetails);
+      }
       
 
-  viewRequest() {
-    console.log('view request successful');
-    this.navCtrl.setRoot("SuccesspagePage");
+  submitRequestManually() {
+
+    if (!this.value.QrCode) {
+      this.courierProvider.presentAlert("Please enter QRCode digits");
+      return false;
+    }
+
+    this.value.RiderName = this.userEmail;
+
+    console.log(this.value);
+
+    this.loading = this.loadingCtrl.create({ content: "Submitting Request" });
+    this.loading.present();
+    this.courierProvider.callServicePost(this.submitRiderPickupURL, this.value)
+    .then((result: any) => {
+
+      console.log(result);
+
+    if (result.StatusCode == 1000) {
+      this.loading.dismissAll();
+
+      console.log("Rider's update was submitted successfully");
+
+      this.navCtrl.setRoot("SuccesspagePage");      
+    }
+    else {
+      this.loading.dismissAll();      
+      this.courierProvider.presentAlert(result.Error);
+    }
+
+    }, (err: any) => {
+
+    this.loading.dismissAll();      
+      console.log("Call entered exception");      
+      console.log(err);
+      this.courierProvider.presentAlert("Service not available at the moment, please try again later");      
+    }
+  );
+
   }
 
 }
