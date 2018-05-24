@@ -19,7 +19,7 @@ import { LoadingController } from 'ionic-angular';
 })
 export class ViewrequestPage {
 
-  constructor( public loadingCtrl: LoadingController, public courierProvider: CourierproviderProvider, public sessionProvider: SessionproviderProvider, public navCtrl: NavController, public navParams: NavParams, private qrScanner: QRScanner) {
+  constructor(public loadingCtrl: LoadingController, public courierProvider: CourierproviderProvider, public sessionProvider: SessionproviderProvider, public navCtrl: NavController, public navParams: NavParams, private qrScanner: QRScanner) {
   }
 
   ionViewDidLoad() {
@@ -64,6 +64,7 @@ export class ViewrequestPage {
       .catch((e: any) => 
         console.log('Error is', e));
       }
+      
 
       async getUserName() {
         var userName = await this.sessionProvider.getStorage('userName');

@@ -19,13 +19,15 @@ import { SessionproviderProvider } from '../../providers/sessionprovider/session
 export class MailroomdashboardPage {
 
   constructor(public sessionProvider: SessionproviderProvider, public loadingCtrl: LoadingController, public courierProvider: CourierproviderProvider, public navCtrl: NavController, public navParams: NavParams) {
+
   }
 
   ionViewDidLoad() {
+    this.getAllMailroomRequest();
   }
 
   loading: any;
-  role = "Rider";
+  role = "mailRoomOfficer";
   allRequests: any;
 
   getMailRoomRequestURL = 'http://gtmobile.gtbank.com/CourierAPI/api/Courier/get-all-mailroom-requests';
@@ -37,10 +39,16 @@ export class MailroomdashboardPage {
     this.courierProvider.callService(this.getMailRoomRequestURL)
     .then((result: any) => {
 
-      if (result.StatusCode == 1000){
+      if (result.StatusCode == 1000) {
         this.loading.dismissAll();      
         this.allRequests = JSON.parse(result.Message);
-        console.log(this.allRequests);        
+        console.log(this.allRequests);
+
+        if(this.allRequests.length === 0) {
+        this.courierProvider.presentAlert("There are no available request at the moment");   
+        return false;            
+        }
+
       }
       else {
         this.loading.dismissAll();      
@@ -57,10 +65,10 @@ export class MailroomdashboardPage {
   );
   }
 
-  acceptRequest(reqDets) {
-    this.sessionProvider.setStorage('requestDetails', reqDets).then(() => {
+  acceptRequest(reqDets: any) {
+    this.sessionProvider.setStorage('requestDetails', JSON.stringify(reqDets)).then(() => {
         this.navCtrl.setRoot("ViewrequestPage");      
       });
-  }
+  } 
 
 }
