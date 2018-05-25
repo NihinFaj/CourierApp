@@ -27,9 +27,9 @@ export class ViewrequestPage {
     this.getRequestDetails();
   }
 
-  loading: any;
   submitRiderPickupURL = 'http://gtmobile.gtbank.com/CourierAPI/api/Courier/submit-rider-pickup-request';
 
+  loading: any;  
   requestDetails: any;
   userDetails: any;
   data = {

@@ -24,19 +24,33 @@ export class ViewrequestmailroomPage {
 
   ionViewDidLoad() {
     this.getUserName();
-    this.getRequestDetails();
+    // this.getRequestDetails();
   }
 
-  userEmail: any;
-  loading: any;
   submitMailroomPickupURL = 'http://gtmobile.gtbank.com/CourierAPI/api/Courier/submit-mailroom-pickup-request';
 
-  requestDetails = {};
-
+  loading: any;  
+  // requestDetails: any;
+  userDetails: any;
+  data = {
+    RiderEmail: ""
+  }  
   value = {
     QrCode: "",
     MailRoomName: ""
   }
+
+  async getUserName() {
+    this.userDetails = await this.sessionProvider.getStorage('registeredUserDetails');
+    this.data.RiderEmail = JSON.parse(this.userDetails).Email_Address;  
+    console.log("Rider Email Gotten is " + this.data.RiderEmail); 
+  }
+
+  // async getRequestDetails() {
+  //   var reqDet = await this.sessionProvider.getStorage('requestDetails');
+  //   this.requestDetails = JSON.parse(reqDet);
+  //   console.log(this.requestDetails);
+  // }
 
   scanQR() {
     this.qrScanner.prepare()
@@ -63,28 +77,19 @@ export class ViewrequestmailroomPage {
       })
       .catch((e: any) => 
         console.log('Error is', e));
-      }
-
-      async getUserName() {
-        var userName = await this.sessionProvider.getStorage('userName');
-        this.userEmail = userName;
-        console.log(this.userEmail);
-      }
-
-      async getRequestDetails() {
-        var reqDet = await this.sessionProvider.getStorage('requestDetails');
-        this.requestDetails = JSON.parse(reqDet);
-        console.log(this.requestDetails);
-      }
+    }
 
       submitRequestManually() {
+
+        console.log("Entered QRCode");
+        console.log(this.value.QrCode);
 
         if (!this.value.QrCode) {
           this.courierProvider.presentAlert("Please enter QRCode digits");
           return false;
         }
     
-        this.value.MailRoomName = this.userEmail;
+        this.value.MailRoomName = this.data.RiderEmail;
     
         console.log(this.value);
     
@@ -100,7 +105,7 @@ export class ViewrequestmailroomPage {
     
           console.log("Rider's update was submitted successfully");
     
-          this.navCtrl.setRoot("SuccesspagePage");      
+          this.navCtrl.setRoot("MailroomsuccesspagePage");      
         }
         else {
           this.loading.dismissAll();      

@@ -1,6 +1,6 @@
 webpackJsonp([0],{
 
-/***/ 321:
+/***/ 323:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -8,7 +8,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ViewrequestmailroomPageModule", function() { return ViewrequestmailroomPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(31);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__viewrequestmailroom__ = __webpack_require__(327);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__viewrequestmailroom__ = __webpack_require__(330);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -38,7 +38,7 @@ var ViewrequestmailroomPageModule = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 327:
+/***/ 330:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -113,7 +113,9 @@ var ViewrequestmailroomPage = /** @class */ (function () {
         this.navParams = navParams;
         this.qrScanner = qrScanner;
         this.submitMailroomPickupURL = 'http://gtmobile.gtbank.com/CourierAPI/api/Courier/submit-mailroom-pickup-request';
-        this.requestDetails = {};
+        this.data = {
+            RiderEmail: ""
+        };
         this.value = {
             QrCode: "",
             MailRoomName: ""
@@ -121,8 +123,30 @@ var ViewrequestmailroomPage = /** @class */ (function () {
     }
     ViewrequestmailroomPage.prototype.ionViewDidLoad = function () {
         this.getUserName();
-        this.getRequestDetails();
+        // this.getRequestDetails();
     };
+    ViewrequestmailroomPage.prototype.getUserName = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            var _a;
+            return __generator(this, function (_b) {
+                switch (_b.label) {
+                    case 0:
+                        _a = this;
+                        return [4 /*yield*/, this.sessionProvider.getStorage('registeredUserDetails')];
+                    case 1:
+                        _a.userDetails = _b.sent();
+                        this.data.RiderEmail = JSON.parse(this.userDetails).Email_Address;
+                        console.log("Rider Email Gotten is " + this.data.RiderEmail);
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
+    // async getRequestDetails() {
+    //   var reqDet = await this.sessionProvider.getStorage('requestDetails');
+    //   this.requestDetails = JSON.parse(reqDet);
+    //   console.log(this.requestDetails);
+    // }
     ViewrequestmailroomPage.prototype.scanQR = function () {
         var _this = this;
         this.qrScanner.prepare()
@@ -149,43 +173,15 @@ var ViewrequestmailroomPage = /** @class */ (function () {
             return console.log('Error is', e);
         });
     };
-    ViewrequestmailroomPage.prototype.getUserName = function () {
-        return __awaiter(this, void 0, void 0, function () {
-            var userName;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.sessionProvider.getStorage('userName')];
-                    case 1:
-                        userName = _a.sent();
-                        this.userEmail = userName;
-                        console.log(this.userEmail);
-                        return [2 /*return*/];
-                }
-            });
-        });
-    };
-    ViewrequestmailroomPage.prototype.getRequestDetails = function () {
-        return __awaiter(this, void 0, void 0, function () {
-            var reqDet;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.sessionProvider.getStorage('requestDetails')];
-                    case 1:
-                        reqDet = _a.sent();
-                        this.requestDetails = JSON.parse(reqDet);
-                        console.log(this.requestDetails);
-                        return [2 /*return*/];
-                }
-            });
-        });
-    };
     ViewrequestmailroomPage.prototype.submitRequestManually = function () {
         var _this = this;
+        console.log("Entered QRCode");
+        console.log(this.value.QrCode);
         if (!this.value.QrCode) {
             this.courierProvider.presentAlert("Please enter QRCode digits");
             return false;
         }
-        this.value.MailRoomName = this.userEmail;
+        this.value.MailRoomName = this.data.RiderEmail;
         console.log(this.value);
         this.loading = this.loadingCtrl.create({ content: "Submitting Request" });
         this.loading.present();
@@ -195,7 +191,7 @@ var ViewrequestmailroomPage = /** @class */ (function () {
             if (result.StatusCode == 1000) {
                 _this.loading.dismissAll();
                 console.log("Rider's update was submitted successfully");
-                _this.navCtrl.setRoot("SuccesspagePage");
+                _this.navCtrl.setRoot("MailroomsuccesspagePage");
             }
             else {
                 _this.loading.dismissAll();

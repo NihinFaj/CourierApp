@@ -102,7 +102,7 @@ export class HomePage {
         }
         else if (this.dataGroup.Status == "MR") {
           console.log("I am a mail room officer");          
-        this.navCtrl.setRoot("ViewrequestPage");                            
+        this.navCtrl.setRoot("ViewrequestmailroomPage");                            
         }
 
         });

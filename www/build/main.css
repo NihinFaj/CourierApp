@@ -25678,6 +25678,24 @@ ion-navbar.toolbar {
   min-height: calc(46px + env(safe-area-inset-bottom));
 }
 
+page-mailroomsuccesspage .confirmation-msg {
+  margin-top: 20px;
+}
+
+page-mailroomsuccesspage .confirmation-msg .bigText {
+  font-size: 1.5rem;
+  line-height: 1.8rem;
+  letter-spacing: 0.5px;
+  color: #3C3C3C;
+}
+
+page-mailroomsuccesspage .confirmBtn-wrapper {
+  position: fixed;
+  width: 100%;
+  left: 0;
+  bottom: 200px;
+}
+
 page-successpage .confirmation-msg {
   margin-top: 20px;
 }
