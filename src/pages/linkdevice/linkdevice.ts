@@ -30,9 +30,14 @@ export class LinkdevicePage {
     name: ""
   }
 
+  userDetails: any;
+
   async getUserName() {
-    var userName = await this.sessionProvider.getStorage('userName');
-    this.data.name = userName;
+    this.userDetails = await this.sessionProvider.getStorage('registeredUserDetails');
+    console.log(this.userDetails);
+
+    this.data.name = JSON.parse(this.userDetails).Courier_Name;
+
   }
 
   // GoToRequests() {

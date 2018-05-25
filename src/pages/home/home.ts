@@ -21,7 +21,9 @@ export class HomePage {
 
   loading: any;
   Users: any;
-  
+
+  dataGroup: any;
+
   data = {
     Email: "",
     Status:"",
@@ -32,13 +34,13 @@ export class HomePage {
   registerUserURL = 'http://gtmobile.gtbank.com/CourierAPI/api/Courier/register-user';
 
   getDeviceInfo() {
-    console.log('Device UUID is: ' + this.device.uuid);
-    console.log('Cordova is: ' + this.device.cordova);
-    console.log('Device Model is: ' + this.device.model);
-    console.log('Platform is: ' + this.device.platform);
-    console.log('OS Version is: ' + this.device.version);
-    console.log('Manufacturer is: ' + this.device.manufacturer);
-    console.log('Serial Number is: ' + this.device.serial);
+    // console.log('Device UUID is: ' + this.device.uuid);
+    // console.log('Cordova is: ' + this.device.cordova);
+    // console.log('Device Model is: ' + this.device.model);
+    // console.log('Platform is: ' + this.device.platform);
+    // console.log('OS Version is: ' + this.device.version);
+    // console.log('Manufacturer is: ' + this.device.manufacturer);
+    // console.log('Serial Number is: ' + this.device.serial);
   }
 
   getAllUser() {
@@ -50,7 +52,6 @@ export class HomePage {
       if (result.StatusCode == 1000){
         this.loading.dismissAll();      
         this.Users = JSON.parse(result.Message);
-        console.log(this.Users);                
 
         if(this.Users.length === 0) {
           this.courierProvider.presentAlert("There are no available users at the moment.");     
@@ -74,13 +75,14 @@ export class HomePage {
 
   registerUser() {
 
-    if (!this.data.Email) {
+    if (this.dataGroup === {}) {
       this.courierProvider.presentAlert("Please select a name");
       return false;
     }
 
     this.data.DeviceId = this.device.uuid || "123456";
     this.data.Status = "1";
+    this.data.Email = this.dataGroup.Email_Address;
 
     console.log(this.data);
 
@@ -92,8 +94,17 @@ export class HomePage {
     if (result.StatusCode == 1000) {
       this.loading.dismissAll();
 
-      this.sessionProvider.setStorage('userName', this.data.Email).then(() => {
-        this.navCtrl.setRoot("LinkdevicePage");      
+      this.sessionProvider.setStorage('registeredUserDetails', JSON.stringify(this.dataGroup)).then(() => {
+
+        if(this.dataGroup.Status == "R"){
+          console.log("I am a rider");
+        this.navCtrl.setRoot("LinkdevicePage");                
+        }
+        else if (this.dataGroup.Status == "MR") {
+          console.log("I am a mail room officer");          
+        this.navCtrl.setRoot("ViewrequestPage");                            
+        }
+
         });
     }
     else {
