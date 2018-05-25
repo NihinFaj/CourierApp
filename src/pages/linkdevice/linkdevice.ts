@@ -34,17 +34,10 @@ export class LinkdevicePage {
 
   async getUserName() {
     this.userDetails = await this.sessionProvider.getStorage('registeredUserDetails');
-    console.log(this.userDetails);
 
     this.data.name = JSON.parse(this.userDetails).Courier_Name;
 
   }
-
-  // GoToRequests() {
-    // this.sessionProvider.setStorage('roleValue', this.role).then(() => {
-            // this.navCtrl.setRoot("RiderdashboardPage");      
-            // });
-  // }
 
   GoToRequests() {
     this.navCtrl.setRoot("RiderdashboardPage");      

@@ -22,8 +22,7 @@ export class RiderdashboardPage {
   }
 
   ionViewDidLoad() {
-    // this.getUserName();    
-    this.getAllRiderRequest();
+    this.getRiderDetailsAndRequest();    
   }
 
   loading: any;
@@ -37,27 +36,20 @@ export class RiderdashboardPage {
 
   getRiderRequestURL = 'http://gtmobile.gtbank.com/CourierAPI/api/Courier/get-all-rider-requests';
 
-  async getUserName() {
+  async getRiderDetailsAndRequest() {
+
     this.userDetails = await this.sessionProvider.getStorage('registeredUserDetails');
 
-    this.data.BranchCode = this.userDetails.Branch_Code;
-    this.data.RiderEmail = this.userDetails.Email_Address;   
-
-    console.log(this.data.BranchCode);
-    console.log(this.data.RiderEmail);
-  }
-
-  getAllRiderRequest() {
-
-    this.userDetails = this.sessionProvider.getStorage('registeredUserDetails');
+    this.data.BranchCode = JSON.parse(this.userDetails).Branch_Code;
+    this.data.RiderEmail = JSON.parse(this.userDetails).Email_Address;   
     
-    
-
-    console.log(this.userDetails);
-
     this.loading = this.loadingCtrl.create({ content: "" });
     this.loading.present();
-    this.courierProvider.callServicePost(this.getRiderRequestURL,this.data )
+
+    console.log("About to call the service");
+    console.log(this.data);
+    
+    this.courierProvider.callServicePost(this.getRiderRequestURL,this.data)
     .then((result: any) => {
 
       if (result.StatusCode == 1000) {
@@ -84,6 +76,7 @@ export class RiderdashboardPage {
       this.courierProvider.presentAlert("Service not available at the moment, please try again later");
     }
   );
+
   }
 
     acceptRequest(reqDets: any) {
