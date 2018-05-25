@@ -1,6 +1,6 @@
 webpackJsonp([1],{
 
-/***/ 321:
+/***/ 322:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -8,7 +8,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ViewrequestPageModule", function() { return ViewrequestPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(31);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__viewrequest__ = __webpack_require__(327);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__viewrequest__ = __webpack_require__(328);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -38,7 +38,7 @@ var ViewrequestPageModule = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 327:
+/***/ 328:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -113,7 +113,9 @@ var ViewrequestPage = /** @class */ (function () {
         this.navParams = navParams;
         this.qrScanner = qrScanner;
         this.submitRiderPickupURL = 'http://gtmobile.gtbank.com/CourierAPI/api/Courier/submit-rider-pickup-request';
-        this.requestDetails = {};
+        this.data = {
+            RiderEmail: ""
+        };
         this.value = {
             QrCode: "",
             RiderName: ""
@@ -122,6 +124,39 @@ var ViewrequestPage = /** @class */ (function () {
     ViewrequestPage.prototype.ionViewDidLoad = function () {
         this.getUserName();
         this.getRequestDetails();
+    };
+    ViewrequestPage.prototype.getUserName = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            var _a;
+            return __generator(this, function (_b) {
+                switch (_b.label) {
+                    case 0:
+                        _a = this;
+                        return [4 /*yield*/, this.sessionProvider.getStorage('registeredUserDetails')];
+                    case 1:
+                        _a.userDetails = _b.sent();
+                        this.data.RiderEmail = JSON.parse(this.userDetails).Email_Address;
+                        console.log("Rider Email Gotten is " + this.data.RiderEmail);
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
+    ViewrequestPage.prototype.getRequestDetails = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            var reqDet;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.sessionProvider.getStorage('requestDetails')];
+                    case 1:
+                        reqDet = _a.sent();
+                        this.requestDetails = JSON.parse(reqDet);
+                        console.log("Request details are");
+                        console.log(this.requestDetails);
+                        return [2 /*return*/];
+                }
+            });
+        });
     };
     ViewrequestPage.prototype.scanQR = function () {
         var _this = this;
@@ -149,43 +184,26 @@ var ViewrequestPage = /** @class */ (function () {
             return console.log('Error is', e);
         });
     };
-    ViewrequestPage.prototype.getUserName = function () {
-        return __awaiter(this, void 0, void 0, function () {
-            var userName;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.sessionProvider.getStorage('userName')];
-                    case 1:
-                        userName = _a.sent();
-                        this.userEmail = userName;
-                        console.log(this.userEmail);
-                        return [2 /*return*/];
-                }
-            });
-        });
-    };
-    ViewrequestPage.prototype.getRequestDetails = function () {
-        return __awaiter(this, void 0, void 0, function () {
-            var reqDet;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.sessionProvider.getStorage('requestDetails')];
-                    case 1:
-                        reqDet = _a.sent();
-                        this.requestDetails = JSON.parse(reqDet);
-                        console.log(this.requestDetails);
-                        return [2 /*return*/];
-                }
-            });
-        });
-    };
     ViewrequestPage.prototype.submitRequestManually = function () {
         var _this = this;
+        console.log("Gotten QRCode");
+        console.log(this.requestDetails.QR_Code);
+        console.log("Entered QRCode");
+        console.log(this.value.QrCode);
         if (!this.value.QrCode) {
             this.courierProvider.presentAlert("Please enter QRCode digits");
             return false;
         }
-        this.value.RiderName = this.userEmail;
+        if (!this.data.RiderEmail) {
+            this.courierProvider.presentAlert("Please Register as a Rider");
+            return false;
+        }
+        if (this.requestDetails.QR_Code != this.value.QrCode) {
+            this.courierProvider.presentAlert("QR Code entered doesn't match the request picked.");
+            console.log("QR Codes don't match");
+            return false;
+        }
+        this.value.RiderName = this.data.RiderEmail;
         console.log(this.value);
         this.loading = this.loadingCtrl.create({ content: "Submitting Request" });
         this.loading.present();
@@ -212,9 +230,10 @@ var ViewrequestPage = /** @class */ (function () {
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
             selector: 'page-viewrequest',template:/*ion-inline-start:"/Users/appdevmac1/ionic-projects/CourierApp/src/pages/viewrequest/viewrequest.html"*/'<!--\n  Generated template for the ViewrequestPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n        <div class="backBtn-wrapper">\n            <span class="icon icon-back"></span>\n        </div>\n    <ion-title class="ion-title">Accept Request</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n\n  <div class="app-wrapper">\n\n    <div class="forms-wrapper mt-30">\n        <div class="delivery-address">\n            <div class="map-wrapper">\n                    <i class="fas fa-map-marker"></i>\n            </div>\n            <div class="address-details">\n                <p class="thickText">Deliver pouch to:</p>\n                <p class="smText">Plot 714, Processing center, Adetokunbo Ademola, VI, Lagos</p>\n            </div>\n        </div>\n\n        <div class="mt-20">\n            <button class="btn btn-primary" (click)="scanQR()">Scan QR Code <i class="fas fa-qrcode"></i></button>\n\n            <p class="smText mt-30">OR</p>\n\n            <div class="form-group mt-30">\n                <label class="smText">Input QRCode digits</label>\n                <div class="input-group">\n                    <input [(ngModel)]="value.QrCode" class="form-control input-code" placeholder="e.g. awsedrfgtyhuj12sd4">\n                    <button class="btn btn-sm" (click)="submitRequestManually()">Confirm</button>\n                </div>\n            </div>\n        </div>\n    </div>\n</div>\n\n</ion-content>\n'/*ion-inline-end:"/Users/appdevmac1/ionic-projects/CourierApp/src/pages/viewrequest/viewrequest.html"*/,
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* LoadingController */], __WEBPACK_IMPORTED_MODULE_4__providers_courierprovider_courierprovider__["a" /* CourierproviderProvider */], __WEBPACK_IMPORTED_MODULE_3__providers_sessionprovider_sessionprovider__["a" /* SessionproviderProvider */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2__ionic_native_qr_scanner__["a" /* QRScanner */]])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* LoadingController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* LoadingController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_4__providers_courierprovider_courierprovider__["a" /* CourierproviderProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__providers_courierprovider_courierprovider__["a" /* CourierproviderProvider */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__providers_sessionprovider_sessionprovider__["a" /* SessionproviderProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__providers_sessionprovider_sessionprovider__["a" /* SessionproviderProvider */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_2__ionic_native_qr_scanner__["a" /* QRScanner */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__ionic_native_qr_scanner__["a" /* QRScanner */]) === "function" && _f || Object])
     ], ViewrequestPage);
     return ViewrequestPage;
+    var _a, _b, _c, _d, _e, _f;
 }());
 
 //# sourceMappingURL=viewrequest.js.map

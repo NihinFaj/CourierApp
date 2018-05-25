@@ -27,16 +27,32 @@ export class ViewrequestPage {
     this.getRequestDetails();
   }
 
-  userEmail: any;
   loading: any;
   submitRiderPickupURL = 'http://gtmobile.gtbank.com/CourierAPI/api/Courier/submit-rider-pickup-request';
 
-  requestDetails = {};
-
+  requestDetails: any;
+  userDetails: any;
+  data = {
+    RiderEmail: ""
+  }
   value = {
     QrCode: "",
     RiderName: ""
   }
+
+  async getUserName() {
+    this.userDetails = await this.sessionProvider.getStorage('registeredUserDetails');
+    this.data.RiderEmail = JSON.parse(this.userDetails).Email_Address;  
+    console.log("Rider Email Gotten is " + this.data.RiderEmail); 
+  }
+
+  async getRequestDetails() {
+    var reqDet = await this.sessionProvider.getStorage('requestDetails');
+    this.requestDetails = JSON.parse(reqDet);
+    console.log("Request details are");
+    console.log(this.requestDetails);
+  }
+
 
   scanQR() {
     this.qrScanner.prepare()
@@ -66,28 +82,32 @@ export class ViewrequestPage {
       }
       
 
-      async getUserName() {
-        var userName = await this.sessionProvider.getStorage('userName');
-        this.userEmail = userName;
-        console.log(this.userEmail);
-        
-      }
-
-      async getRequestDetails() {
-        var reqDet = await this.sessionProvider.getStorage('requestDetails');
-        this.requestDetails = JSON.parse(reqDet);
-        console.log(this.requestDetails);
-      }
-      
-
+  
+    
   submitRequestManually() {
+
+    console.log("Gotten QRCode");
+    console.log(this.requestDetails.QR_Code);
+    console.log("Entered QRCode");
+    console.log(this.value.QrCode);
 
     if (!this.value.QrCode) {
       this.courierProvider.presentAlert("Please enter QRCode digits");
       return false;
     }
 
-    this.value.RiderName = this.userEmail;
+    if (!this.data.RiderEmail) {
+      this.courierProvider.presentAlert("Please Register as a Rider");
+      return false;
+    }
+
+    if(this.requestDetails.QR_Code != this.value.QrCode) {
+      this.courierProvider.presentAlert("QR Code entered doesn't match the request picked.");
+      console.log("QR Codes don't match");
+      return false;
+    }
+
+    this.value.RiderName = this.data.RiderEmail;
 
     console.log(this.value);
 

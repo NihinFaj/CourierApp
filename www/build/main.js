@@ -189,11 +189,11 @@ var map = {
 		5
 	],
 	"../pages/mailroomdashboard/mailroomdashboard.module": [
-		318,
+		319,
 		4
 	],
 	"../pages/riderdashboard/riderdashboard.module": [
-		319,
+		318,
 		3
 	],
 	"../pages/successpage/successpage.module": [
@@ -201,11 +201,11 @@ var map = {
 		2
 	],
 	"../pages/viewrequest/viewrequest.module": [
-		321,
+		322,
 		1
 	],
 	"../pages/viewrequestmailroom/viewrequestmailroom.module": [
-		322,
+		321,
 		0
 	]
 };
@@ -417,11 +417,11 @@ var AppModule = /** @class */ (function () {
                 __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["d" /* IonicModule */].forRoot(__WEBPACK_IMPORTED_MODULE_5__app_component__["a" /* MyApp */], {}, {
                     links: [
                         { loadChildren: '../pages/linkdevice/linkdevice.module#LinkdevicePageModule', name: 'LinkdevicePage', segment: 'linkdevice', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/mailroomdashboard/mailroomdashboard.module#MailroomdashboardPageModule', name: 'MailroomdashboardPage', segment: 'mailroomdashboard', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/riderdashboard/riderdashboard.module#RiderdashboardPageModule', name: 'RiderdashboardPage', segment: 'riderdashboard', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/mailroomdashboard/mailroomdashboard.module#MailroomdashboardPageModule', name: 'MailroomdashboardPage', segment: 'mailroomdashboard', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/successpage/successpage.module#SuccesspagePageModule', name: 'SuccesspagePage', segment: 'successpage', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/viewrequest/viewrequest.module#ViewrequestPageModule', name: 'ViewrequestPage', segment: 'viewrequest', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/viewrequestmailroom/viewrequestmailroom.module#ViewrequestmailroomPageModule', name: 'ViewrequestmailroomPage', segment: 'viewrequestmailroom', priority: 'low', defaultHistory: [] }
+                        { loadChildren: '../pages/viewrequestmailroom/viewrequestmailroom.module#ViewrequestmailroomPageModule', name: 'ViewrequestmailroomPage', segment: 'viewrequestmailroom', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/viewrequest/viewrequest.module#ViewrequestPageModule', name: 'ViewrequestPage', segment: 'viewrequest', priority: 'low', defaultHistory: [] }
                     ]
                 }),
                 __WEBPACK_IMPORTED_MODULE_9__angular_common_http__["b" /* HttpClientModule */],

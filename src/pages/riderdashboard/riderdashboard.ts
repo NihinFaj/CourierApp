@@ -48,7 +48,7 @@ export class RiderdashboardPage {
 
     console.log("About to call the service");
     console.log(this.data);
-    
+
     this.courierProvider.callServicePost(this.getRiderRequestURL,this.data)
     .then((result: any) => {
 
@@ -58,7 +58,7 @@ export class RiderdashboardPage {
         console.log(this.allRequests);
 
         if(this.allRequests.length === 0) {
-        this.courierProvider.presentAlert("There are no available request at the moment");   
+        this.courierProvider.presentAlert("There are no available request for you at the moment");   
         return false;            
         }
 
