@@ -160,6 +160,10 @@ body {
   margin-bottom: 20px;
 }
 
+.cards-wrapper .card:last-child {
+  margin-bottom: 60px;
+}
+
 .cards-wrapper .requestCard {
   padding: 10px;
 }
