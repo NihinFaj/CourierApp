@@ -88,6 +88,11 @@ export class ViewrequestmailroomPage {
           this.courierProvider.presentAlert("Please enter QRCode digits");
           return false;
         }
+        
+        if (!this.data.RiderEmail) {
+          this.courierProvider.presentAlert("Please Register as a Rider");
+          return false;
+        }
     
         this.value.MailRoomName = this.data.RiderEmail;
     
