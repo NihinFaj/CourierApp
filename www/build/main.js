@@ -189,27 +189,27 @@ var map = {
 		6
 	],
 	"../pages/mailroomdashboard/mailroomdashboard.module": [
-		318,
+		320,
 		5
 	],
 	"../pages/mailroomsuccesspage/mailroomsuccesspage.module": [
-		319,
+		318,
 		4
 	],
 	"../pages/riderdashboard/riderdashboard.module": [
-		320,
+		321,
 		3
 	],
 	"../pages/successpage/successpage.module": [
-		321,
+		319,
 		2
 	],
 	"../pages/viewrequest/viewrequest.module": [
-		322,
+		323,
 		1
 	],
 	"../pages/viewrequestmailroom/viewrequestmailroom.module": [
-		323,
+		322,
 		0
 	]
 };
@@ -421,12 +421,12 @@ var AppModule = /** @class */ (function () {
                 __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["d" /* IonicModule */].forRoot(__WEBPACK_IMPORTED_MODULE_5__app_component__["a" /* MyApp */], {}, {
                     links: [
                         { loadChildren: '../pages/linkdevice/linkdevice.module#LinkdevicePageModule', name: 'LinkdevicePage', segment: 'linkdevice', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/mailroomdashboard/mailroomdashboard.module#MailroomdashboardPageModule', name: 'MailroomdashboardPage', segment: 'mailroomdashboard', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/mailroomsuccesspage/mailroomsuccesspage.module#MailroomsuccesspagePageModule', name: 'MailroomsuccesspagePage', segment: 'mailroomsuccesspage', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/riderdashboard/riderdashboard.module#RiderdashboardPageModule', name: 'RiderdashboardPage', segment: 'riderdashboard', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/successpage/successpage.module#SuccesspagePageModule', name: 'SuccesspagePage', segment: 'successpage', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/viewrequest/viewrequest.module#ViewrequestPageModule', name: 'ViewrequestPage', segment: 'viewrequest', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/viewrequestmailroom/viewrequestmailroom.module#ViewrequestmailroomPageModule', name: 'ViewrequestmailroomPage', segment: 'viewrequestmailroom', priority: 'low', defaultHistory: [] }
+                        { loadChildren: '../pages/mailroomdashboard/mailroomdashboard.module#MailroomdashboardPageModule', name: 'MailroomdashboardPage', segment: 'mailroomdashboard', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/riderdashboard/riderdashboard.module#RiderdashboardPageModule', name: 'RiderdashboardPage', segment: 'riderdashboard', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/viewrequestmailroom/viewrequestmailroom.module#ViewrequestmailroomPageModule', name: 'ViewrequestmailroomPage', segment: 'viewrequestmailroom', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/viewrequest/viewrequest.module#ViewrequestPageModule', name: 'ViewrequestPage', segment: 'viewrequest', priority: 'low', defaultHistory: [] }
                     ]
                 }),
                 __WEBPACK_IMPORTED_MODULE_9__angular_common_http__["b" /* HttpClientModule */],
