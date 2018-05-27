@@ -29,18 +29,27 @@ export class LinkdevicePage {
   data = {
     name: ""
   }
-
   userDetails: any;
 
   async getUserName() {
     this.userDetails = await this.sessionProvider.getStorage('registeredUserDetails');
+
+    console.log(JSON.parse(this.userDetails));
 
     this.data.name = JSON.parse(this.userDetails).Courier_Name;
 
   }
 
   GoToRequests() {
-    this.navCtrl.push("RiderdashboardPage");      
+
+    if(JSON.parse(this.userDetails).Status === "R"){
+      console.log("I am a Rider");
+    this.navCtrl.push("RiderdashboardPage");            
+    }
+    else if (JSON.parse(this.userDetails).Status === "MR"){
+      console.log("I am a mailroom officer");      
+      this.navCtrl.push("ViewrequestmailroomPage");            
+    }
   }
 
 }

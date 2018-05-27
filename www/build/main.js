@@ -4,80 +4,6 @@ webpackJsonp([7],{
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SessionproviderProvider; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_common_http__ = __webpack_require__(85);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_Storage__ = __webpack_require__(165);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_crypto_js__ = __webpack_require__(267);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_crypto_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_crypto_js__);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-
-/*
-  Generated class for the SessionproviderProvider provider.
-
-  See https://angular.io/guide/dependency-injection for more info on providers
-  and Angular DI.
-*/
-var SessionproviderProvider = /** @class */ (function () {
-    function SessionproviderProvider(http, storage) {
-        this.http = http;
-        this.storage = storage;
-        this.secretKey = "gtbankcourierApp";
-    }
-    SessionproviderProvider.prototype.setName = function (val) {
-        console.log("Name to be set is " + val);
-        this.name = name;
-    };
-    SessionproviderProvider.prototype.GetName = function () {
-        return this.name;
-    };
-    SessionproviderProvider.prototype.setStorage = function (key, val) {
-        val = this.doEncrypt(val);
-        return this.storage.set(key, val);
-    };
-    SessionproviderProvider.prototype.getStorage = function (key) {
-        var _this = this;
-        return this.storage.get(key).then(function (val) {
-            val = _this.doDecrypt(val);
-            return val;
-        });
-    };
-    SessionproviderProvider.prototype.doEncrypt = function (value) {
-        // Encrypt
-        return __WEBPACK_IMPORTED_MODULE_3_crypto_js__["AES"].encrypt(value, this.secretKey).toString();
-    };
-    SessionproviderProvider.prototype.doDecrypt = function (value) {
-        // Decrypt
-        var bytes = __WEBPACK_IMPORTED_MODULE_3_crypto_js__["AES"].decrypt(value, this.secretKey);
-        value = bytes.toString(__WEBPACK_IMPORTED_MODULE_3_crypto_js__["enc"].Utf8);
-        return value;
-    };
-    SessionproviderProvider = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["A" /* Injectable */])(),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_0__angular_common_http__["a" /* HttpClient */], __WEBPACK_IMPORTED_MODULE_2__ionic_Storage__["b" /* Storage */]])
-    ], SessionproviderProvider);
-    return SessionproviderProvider;
-}());
-
-//# sourceMappingURL=sessionprovider.js.map
-
-/***/ }),
-
-/***/ 111:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CourierproviderProvider; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_common_http__ = __webpack_require__(85);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
@@ -163,6 +89,80 @@ var CourierproviderProvider = /** @class */ (function () {
 
 /***/ }),
 
+/***/ 111:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SessionproviderProvider; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_common_http__ = __webpack_require__(85);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_Storage__ = __webpack_require__(165);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_crypto_js__ = __webpack_require__(267);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_crypto_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_crypto_js__);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+/*
+  Generated class for the SessionproviderProvider provider.
+
+  See https://angular.io/guide/dependency-injection for more info on providers
+  and Angular DI.
+*/
+var SessionproviderProvider = /** @class */ (function () {
+    function SessionproviderProvider(http, storage) {
+        this.http = http;
+        this.storage = storage;
+        this.secretKey = "gtbankcourierApp";
+    }
+    SessionproviderProvider.prototype.setName = function (val) {
+        console.log("Name to be set is " + val);
+        this.name = name;
+    };
+    SessionproviderProvider.prototype.GetName = function () {
+        return this.name;
+    };
+    SessionproviderProvider.prototype.setStorage = function (key, val) {
+        val = this.doEncrypt(val);
+        return this.storage.set(key, val);
+    };
+    SessionproviderProvider.prototype.getStorage = function (key) {
+        var _this = this;
+        return this.storage.get(key).then(function (val) {
+            val = _this.doDecrypt(val);
+            return val;
+        });
+    };
+    SessionproviderProvider.prototype.doEncrypt = function (value) {
+        // Encrypt
+        return __WEBPACK_IMPORTED_MODULE_3_crypto_js__["AES"].encrypt(value, this.secretKey).toString();
+    };
+    SessionproviderProvider.prototype.doDecrypt = function (value) {
+        // Decrypt
+        var bytes = __WEBPACK_IMPORTED_MODULE_3_crypto_js__["AES"].decrypt(value, this.secretKey);
+        value = bytes.toString(__WEBPACK_IMPORTED_MODULE_3_crypto_js__["enc"].Utf8);
+        return value;
+    };
+    SessionproviderProvider = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["A" /* Injectable */])(),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_0__angular_common_http__["a" /* HttpClient */], __WEBPACK_IMPORTED_MODULE_2__ionic_Storage__["b" /* Storage */]])
+    ], SessionproviderProvider);
+    return SessionproviderProvider;
+}());
+
+//# sourceMappingURL=sessionprovider.js.map
+
+/***/ }),
+
 /***/ 122:
 /***/ (function(module, exports) {
 
@@ -185,11 +185,11 @@ webpackEmptyAsyncContext.id = 122;
 
 var map = {
 	"../pages/linkdevice/linkdevice.module": [
-		317,
+		322,
 		6
 	],
 	"../pages/mailroomdashboard/mailroomdashboard.module": [
-		320,
+		317,
 		5
 	],
 	"../pages/mailroomsuccesspage/mailroomsuccesspage.module": [
@@ -197,19 +197,19 @@ var map = {
 		4
 	],
 	"../pages/riderdashboard/riderdashboard.module": [
-		321,
+		319,
 		3
 	],
 	"../pages/successpage/successpage.module": [
-		319,
+		320,
 		2
 	],
 	"../pages/viewrequest/viewrequest.module": [
-		323,
+		321,
 		1
 	],
 	"../pages/viewrequestmailroom/viewrequestmailroom.module": [
-		322,
+		323,
 		0
 	]
 };
@@ -236,8 +236,8 @@ module.exports = webpackAsyncContext;
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return HomePage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(31);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_courierprovider_courierprovider__ = __webpack_require__(111);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_sessionprovider_sessionprovider__ = __webpack_require__(110);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_courierprovider_courierprovider__ = __webpack_require__(110);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_sessionprovider_sessionprovider__ = __webpack_require__(111);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_device__ = __webpack_require__(211);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -322,14 +322,7 @@ var HomePage = /** @class */ (function () {
             if (result.StatusCode == 1000) {
                 _this.loading.dismissAll();
                 _this.sessionProvider.setStorage('registeredUserDetails', JSON.stringify(_this.dataGroup)).then(function () {
-                    if (_this.dataGroup.Status == "R") {
-                        console.log("I am a rider");
-                        _this.navCtrl.push("LinkdevicePage");
-                    }
-                    else if (_this.dataGroup.Status == "MR") {
-                        console.log("I am a mail room officer");
-                        _this.navCtrl.push("ViewrequestmailroomPage");
-                    }
+                    _this.navCtrl.push("LinkdevicePage");
                 });
             }
             else {
@@ -383,11 +376,11 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__app_component__ = __webpack_require__(316);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_home_home__ = __webpack_require__(210);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ionic_native_qr_scanner__ = __webpack_require__(212);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__providers_courierprovider_courierprovider__ = __webpack_require__(111);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__providers_courierprovider_courierprovider__ = __webpack_require__(110);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__angular_common_http__ = __webpack_require__(85);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__ionic_native_device__ = __webpack_require__(211);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__ionic_Storage__ = __webpack_require__(165);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__providers_sessionprovider_sessionprovider__ = __webpack_require__(110);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__providers_sessionprovider_sessionprovider__ = __webpack_require__(111);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -420,13 +413,13 @@ var AppModule = /** @class */ (function () {
                 __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["a" /* BrowserModule */],
                 __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["d" /* IonicModule */].forRoot(__WEBPACK_IMPORTED_MODULE_5__app_component__["a" /* MyApp */], {}, {
                     links: [
-                        { loadChildren: '../pages/linkdevice/linkdevice.module#LinkdevicePageModule', name: 'LinkdevicePage', segment: 'linkdevice', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/mailroomsuccesspage/mailroomsuccesspage.module#MailroomsuccesspagePageModule', name: 'MailroomsuccesspagePage', segment: 'mailroomsuccesspage', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/successpage/successpage.module#SuccesspagePageModule', name: 'SuccesspagePage', segment: 'successpage', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/mailroomdashboard/mailroomdashboard.module#MailroomdashboardPageModule', name: 'MailroomdashboardPage', segment: 'mailroomdashboard', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/mailroomsuccesspage/mailroomsuccesspage.module#MailroomsuccesspagePageModule', name: 'MailroomsuccesspagePage', segment: 'mailroomsuccesspage', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/riderdashboard/riderdashboard.module#RiderdashboardPageModule', name: 'RiderdashboardPage', segment: 'riderdashboard', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/viewrequestmailroom/viewrequestmailroom.module#ViewrequestmailroomPageModule', name: 'ViewrequestmailroomPage', segment: 'viewrequestmailroom', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/viewrequest/viewrequest.module#ViewrequestPageModule', name: 'ViewrequestPage', segment: 'viewrequest', priority: 'low', defaultHistory: [] }
+                        { loadChildren: '../pages/successpage/successpage.module#SuccesspagePageModule', name: 'SuccesspagePage', segment: 'successpage', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/viewrequest/viewrequest.module#ViewrequestPageModule', name: 'ViewrequestPage', segment: 'viewrequest', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/linkdevice/linkdevice.module#LinkdevicePageModule', name: 'LinkdevicePage', segment: 'linkdevice', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/viewrequestmailroom/viewrequestmailroom.module#ViewrequestmailroomPageModule', name: 'ViewrequestmailroomPage', segment: 'viewrequestmailroom', priority: 'low', defaultHistory: [] }
                     ]
                 }),
                 __WEBPACK_IMPORTED_MODULE_9__angular_common_http__["b" /* HttpClientModule */],

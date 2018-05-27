@@ -24,7 +24,6 @@ export class ViewrequestmailroomPage {
 
   ionViewDidLoad() {
     this.getUserName();
-    // this.getRequestDetails();
   }
 
   submitMailroomPickupURL = 'http://gtmobile.gtbank.com/CourierAPI/api/Courier/submit-mailroom-pickup-request';
@@ -45,12 +44,6 @@ export class ViewrequestmailroomPage {
     this.data.RiderEmail = JSON.parse(this.userDetails).Email_Address;  
     console.log("Rider Email Gotten is " + this.data.RiderEmail); 
   }
-
-  // async getRequestDetails() {
-  //   var reqDet = await this.sessionProvider.getStorage('requestDetails');
-  //   this.requestDetails = JSON.parse(reqDet);
-  //   console.log(this.requestDetails);
-  // }
 
   scanQR() {
     this.qrScanner.prepare()

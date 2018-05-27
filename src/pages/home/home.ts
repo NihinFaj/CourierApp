@@ -95,16 +95,7 @@ export class HomePage {
       this.loading.dismissAll();
 
       this.sessionProvider.setStorage('registeredUserDetails', JSON.stringify(this.dataGroup)).then(() => {
-
-        if(this.dataGroup.Status == "R"){
-          console.log("I am a rider");
-        this.navCtrl.push("LinkdevicePage");                
-        }
-        else if (this.dataGroup.Status == "MR") {
-          console.log("I am a mail room officer");          
-        this.navCtrl.push("ViewrequestmailroomPage");                            
-        }
-
+        this.navCtrl.push("LinkdevicePage");
         });
     }
     else {
