@@ -98,11 +98,11 @@ export class HomePage {
 
         if(this.dataGroup.Status == "R"){
           console.log("I am a rider");
-        this.navCtrl.setRoot("LinkdevicePage");                
+        this.navCtrl.push("LinkdevicePage");                
         }
         else if (this.dataGroup.Status == "MR") {
           console.log("I am a mail room officer");          
-        this.navCtrl.setRoot("ViewrequestmailroomPage");                            
+        this.navCtrl.push("ViewrequestmailroomPage");                            
         }
 
         });

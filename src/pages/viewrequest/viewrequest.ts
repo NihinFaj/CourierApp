@@ -53,6 +53,10 @@ export class ViewrequestPage {
     console.log(this.requestDetails);
   }
 
+  goBack(){
+    console.log("Go back to previous page");
+    this.navCtrl.pop();
+  }
 
   scanQR() {
     this.qrScanner.prepare()
@@ -81,9 +85,6 @@ export class ViewrequestPage {
         console.log('Error is', e));
       }
       
-
-  
-    
   submitRequestManually() {
 
     console.log("Gotten QRCode");
@@ -123,7 +124,7 @@ export class ViewrequestPage {
 
       console.log("Rider's update was submitted successfully");
 
-      this.navCtrl.setRoot("SuccesspagePage");      
+      this.navCtrl.push("SuccesspagePage");      
     }
     else {
       this.loading.dismissAll();      

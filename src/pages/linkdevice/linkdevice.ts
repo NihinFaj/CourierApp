@@ -40,7 +40,7 @@ export class LinkdevicePage {
   }
 
   GoToRequests() {
-    this.navCtrl.setRoot("RiderdashboardPage");      
+    this.navCtrl.push("RiderdashboardPage");      
   }
 
 }

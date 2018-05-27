@@ -110,7 +110,7 @@ export class ViewrequestmailroomPage {
     
           console.log("Rider's update was submitted successfully");
     
-          this.navCtrl.setRoot("MailroomsuccesspagePage");      
+          this.navCtrl.push("MailroomsuccesspagePage");      
         }
         else {
           this.loading.dismissAll();      

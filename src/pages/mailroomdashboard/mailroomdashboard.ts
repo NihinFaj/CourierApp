@@ -67,7 +67,7 @@ export class MailroomdashboardPage {
 
   acceptRequest(reqDets: any) {
     this.sessionProvider.setStorage('requestDetails', JSON.stringify(reqDets)).then(() => {
-        this.navCtrl.setRoot("ViewrequestPage");      
+        this.navCtrl.push("ViewrequestPage");      
       });
   } 
 

@@ -23,7 +23,7 @@ export class MailroomsuccesspagePage {
 
   goToDashboard(){
     console.log("Mailroom request was succesful, going back to Request Page");
-    this.navCtrl.setRoot("ViewrequestmailroomPage");
+    this.navCtrl.push("ViewrequestmailroomPage");
   }
 
 }

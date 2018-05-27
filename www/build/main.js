@@ -324,11 +324,11 @@ var HomePage = /** @class */ (function () {
                 _this.sessionProvider.setStorage('registeredUserDetails', JSON.stringify(_this.dataGroup)).then(function () {
                     if (_this.dataGroup.Status == "R") {
                         console.log("I am a rider");
-                        _this.navCtrl.setRoot("LinkdevicePage");
+                        _this.navCtrl.push("LinkdevicePage");
                     }
                     else if (_this.dataGroup.Status == "MR") {
                         console.log("I am a mail room officer");
-                        _this.navCtrl.setRoot("ViewrequestmailroomPage");
+                        _this.navCtrl.push("ViewrequestmailroomPage");
                     }
                 });
             }

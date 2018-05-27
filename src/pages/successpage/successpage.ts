@@ -24,7 +24,7 @@ export class SuccesspagePage {
 
   goToDashboard(){
     console.log("I was succesful, going back to Dashboard");
-    this.navCtrl.setRoot("RiderdashboardPage");
+    this.navCtrl.push("RiderdashboardPage");
   }
 
 }
