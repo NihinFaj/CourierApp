@@ -40,12 +40,14 @@ export class ViewrequestPage {
     RiderName: ""
   }
 
+  //Get registered user details
   async getUserName() {
     this.userDetails = await this.sessionProvider.getStorage('registeredUserDetails');
     this.data.RiderEmail = JSON.parse(this.userDetails).Email_Address;  
     console.log("Rider Email Gotten is " + this.data.RiderEmail); 
   }
 
+  //Get selected request details
   async getRequestDetails() {
     var reqDet = await this.sessionProvider.getStorage('requestDetails');
     this.requestDetails = JSON.parse(reqDet);
@@ -53,11 +55,13 @@ export class ViewrequestPage {
     console.log(this.requestDetails);
   }
 
+  //Go back to previous page
   goBack(){
     console.log("Go back to previous page");
     this.navCtrl.pop();
   }
 
+  //Open up QR Scanner
   scanQR() {
     this.qrScanner.prepare()
       .then((status: QRScannerStatus) => {
@@ -85,6 +89,7 @@ export class ViewrequestPage {
         console.log('Error is', e));
       }
       
+  //Submit request manually    
   submitRequestManually() {
 
     console.log("Gotten QRCode");

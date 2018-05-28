@@ -34,8 +34,10 @@ export class RiderdashboardPage {
     RiderEmail: ""
   }
 
+  //URLs to call on the REST Api
   getRiderRequestURL = 'http://gtmobile.gtbank.com/CourierAPI/api/Courier/get-all-rider-requests';
 
+  //Get Rider details and get all requests
   async getRiderDetailsAndRequest() {
 
     this.userDetails = await this.sessionProvider.getStorage('registeredUserDetails');
@@ -79,6 +81,7 @@ export class RiderdashboardPage {
 
   }
 
+    //Accept request 
     acceptRequest(reqDets: any) {
       this.sessionProvider.setStorage('requestDetails', JSON.stringify(reqDets)).then(() => {
           this.navCtrl.push("ViewrequestPage");      

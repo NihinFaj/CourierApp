@@ -39,12 +39,14 @@ export class ViewrequestmailroomPage {
     MailRoomName: ""
   }
 
+  //Get registered user details
   async getUserName() {
     this.userDetails = await this.sessionProvider.getStorage('registeredUserDetails');
     this.data.RiderEmail = JSON.parse(this.userDetails).Email_Address;  
     console.log("Rider Email Gotten is " + this.data.RiderEmail); 
   }
 
+  //Open up camera to scan QR Code
   scanQR() {
     this.qrScanner.prepare()
       .then((status: QRScannerStatus) => {
@@ -72,6 +74,7 @@ export class ViewrequestmailroomPage {
         console.log('Error is', e));
     }
 
+      //Submit request manually
       submitRequestManually() {
 
         console.log("Entered QRCode");

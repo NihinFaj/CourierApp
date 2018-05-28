@@ -22,6 +22,7 @@ export class SuccesspagePage {
     console.log('ionViewDidLoad SuccesspagePage');
   }
 
+  //Return to Rider dashboard page
   goToDashboard(){
     console.log("I was succesful, going back to Dashboard");
     this.navCtrl.push("RiderdashboardPage");

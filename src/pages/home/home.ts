@@ -30,9 +30,11 @@ export class HomePage {
     DeviceId:""
   }
 
+  //URLS to the REST Service
   getAllUserURL = 'http://gtmobile.gtbank.com/CourierAPI/api/Courier/get-all-names';
   registerUserURL = 'http://gtmobile.gtbank.com/CourierAPI/api/Courier/register-user';
 
+  //Get Device Info
   getDeviceInfo() {
     // console.log('Device UUID is: ' + this.device.uuid);
     // console.log('Cordova is: ' + this.device.cordova);
@@ -43,6 +45,7 @@ export class HomePage {
     // console.log('Serial Number is: ' + this.device.serial);
   }
 
+  //Get all users that can be displayed on the App
   getAllUser() {
     this.loading = this.loadingCtrl.create({ content: "" });
     this.loading.present();
@@ -73,6 +76,7 @@ export class HomePage {
   );
   }
 
+  //Register a particular user
   registerUser() {
 
     if (this.dataGroup === {}) {

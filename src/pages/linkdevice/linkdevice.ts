@@ -31,6 +31,7 @@ export class LinkdevicePage {
   }
   userDetails: any;
 
+  //Get userdetails for registered user
   async getUserName() {
     this.userDetails = await this.sessionProvider.getStorage('registeredUserDetails');
 
@@ -39,7 +40,8 @@ export class LinkdevicePage {
     this.data.name = JSON.parse(this.userDetails).Courier_Name;
 
   }
-
+  
+  //Link device based on either being a Rider or Mailroom officer
   GoToRequests() {
 
     if(JSON.parse(this.userDetails).Status === "R"){

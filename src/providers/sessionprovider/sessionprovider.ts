@@ -27,11 +27,13 @@ export class SessionproviderProvider {
     return this.name;
   }
 
+  //Set Storage
   public setStorage(key: string, val: string){
     val = this.doEncrypt(val);
     return this.storage.set(key, val);
   }
 
+  //Get from storage
   public getStorage(key: string) {
     return this.storage.get(key).then((val) => {
       val = this.doDecrypt(val);
@@ -39,11 +41,13 @@ export class SessionproviderProvider {
     });
   }
 
+  //Encrypt string
   public doEncrypt(value: string): string {
     // Encrypt
     return CryptoJS.AES.encrypt(value, this.secretKey).toString();
   }
 
+  //Decrypt string
   private doDecrypt(value): string{
     // Decrypt
     var bytes = CryptoJS.AES.decrypt(value, this.secretKey);

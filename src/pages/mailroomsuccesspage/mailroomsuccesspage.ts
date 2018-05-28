@@ -21,6 +21,7 @@ export class MailroomsuccesspagePage {
   ionViewDidLoad() {
   }
 
+  //Go back to accept request page for mailroom officer
   goToDashboard(){
     console.log("Mailroom request was succesful, going back to Request Page");
     this.navCtrl.push("ViewrequestmailroomPage");

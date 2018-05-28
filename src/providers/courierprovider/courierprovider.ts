@@ -16,6 +16,7 @@ export class CourierproviderProvider {
   constructor(public http: HttpClient, public loadingCtrl: LoadingController, private alertCtrl: AlertController) {
   }
 
+  //Show loader
   showLoader() {
     let loading = this.loadingCtrl.create({
       // spinner: 'hide',
@@ -36,9 +37,10 @@ export class CourierproviderProvider {
     loading.present();
   }
 
+  //Call service without parameters
   callService(url) {
     return new Promise((resolve, reject) => {
-      this.http.post(url, null)
+      this.http.post(url,null)
         .subscribe(res => {
           resolve(res);
         }, (err) => {
@@ -47,6 +49,7 @@ export class CourierproviderProvider {
     });
   }
 
+  //Call service with parameters
   callServicePost(url, data) {
     return new Promise((resolve, reject) => {
       this.http.post(url, data)
@@ -58,6 +61,7 @@ export class CourierproviderProvider {
     });
   }
 
+  //Show popup alert
   presentAlert(msg) {
     let alert = this.alertCtrl.create({
       title: 'Alert',
