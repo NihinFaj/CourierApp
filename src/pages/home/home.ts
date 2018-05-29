@@ -6,6 +6,7 @@ import { LoadingController } from 'ionic-angular';
 import { Injectable } from '@angular/core';
 import { UserDetails, UserResponseModel} from '../home/AllUserResponseModel';
 import { Device } from '@ionic-native/device';
+import { QRScanner, QRScannerStatus } from '@ionic-native/qr-scanner';
 
 
 @Component({
@@ -14,7 +15,7 @@ import { Device } from '@ionic-native/device';
 })
 export class HomePage {
 
-  constructor(public device: Device, public loadingCtrl: LoadingController, public navCtrl: NavController, public courierProvider: CourierproviderProvider, public sessionProvider: SessionproviderProvider) {
+  constructor(public qrScanner: QRScanner, public device: Device, public loadingCtrl: LoadingController, public navCtrl: NavController, public courierProvider: CourierproviderProvider, public sessionProvider: SessionproviderProvider) {
     this.getAllUser();
     this.getDeviceInfo();
   }
@@ -36,13 +37,13 @@ export class HomePage {
 
   //Get Device Info
   getDeviceInfo() {
-    // console.log('Device UUID is: ' + this.device.uuid);
-    // console.log('Cordova is: ' + this.device.cordova);
-    // console.log('Device Model is: ' + this.device.model);
-    // console.log('Platform is: ' + this.device.platform);
-    // console.log('OS Version is: ' + this.device.version);
-    // console.log('Manufacturer is: ' + this.device.manufacturer);
-    // console.log('Serial Number is: ' + this.device.serial);
+    console.log('Device UUID is: ' + this.device.uuid);
+    console.log('Cordova is: ' + this.device.cordova);
+    console.log('Device Model is: ' + this.device.model);
+    console.log('Platform is: ' + this.device.platform);
+    console.log('OS Version is: ' + this.device.version);
+    console.log('Manufacturer is: ' + this.device.manufacturer);
+    console.log('Serial Number is: ' + this.device.serial);
   }
 
   //Get all users that can be displayed on the App

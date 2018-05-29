@@ -25678,6 +25678,10 @@ ion-navbar.toolbar {
   min-height: calc(46px + env(safe-area-inset-bottom));
 }
 
+.transparentBody {
+  background: transparent !important;
+}
+
 page-mailroomsuccesspage .confirmation-msg {
   margin-top: 20px;
 }

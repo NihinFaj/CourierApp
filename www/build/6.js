@@ -116,6 +116,7 @@ var LinkdevicePage = /** @class */ (function () {
     LinkdevicePage.prototype.ionViewDidLoad = function () {
         this.getUserName();
     };
+    //Get userdetails for registered user
     LinkdevicePage.prototype.getUserName = function () {
         return __awaiter(this, void 0, void 0, function () {
             var _a;
@@ -133,6 +134,7 @@ var LinkdevicePage = /** @class */ (function () {
             });
         });
     };
+    //Link device based on either being a Rider or Mailroom officer
     LinkdevicePage.prototype.GoToRequests = function () {
         if (JSON.parse(this.userDetails).Status === "R") {
             console.log("I am a Rider");

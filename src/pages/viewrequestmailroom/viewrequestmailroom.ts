@@ -48,31 +48,51 @@ export class ViewrequestmailroomPage {
 
   //Open up camera to scan QR Code
   scanQR() {
+    console.log("Just entered scan QR Code function");
     this.qrScanner.prepare()
       .then((status: QRScannerStatus) => {
         if (status.authorized) {
+          console.log("Camera permisison was granted");
+                    
+          var ionApp = <HTMLElement>document.getElementsByTagName("ion-app")[0];
           // camera permission was granted
 
-
           // start scanning
-          let scanSub = this.qrScanner.scan().subscribe((text: string) => {
-            console.log('Scanned something', text);
+          console.log("About to start scanning");
 
+          let scanSub = this.qrScanner.scan().subscribe((text: string) => {
+            console.log('Scanned value is:', text);
+            console.log(text);
             this.qrScanner.hide(); // hide camera preview
             scanSub.unsubscribe(); // stop scanning
+            ionApp.style.display = "block";
+            this.value.QrCode = text;
           });
 
+          // show camera preview
+          ionApp.style.display = "none";
+          this.qrScanner.show();
+          setTimeout(() => {
+          ionApp.style.display = "block";
+          scanSub.unsubscribe(); // stop scanning
+          ionApp.style.display = "block";
+          this.qrScanner.hide();
+          }, 15000);
+          // wait for user to scan something, then the observable callback will be called
+
         } else if (status.denied) {
+          console.log("Camera permission was denied, please use OpenSettings to go grant access");
           // camera permission was permanently denied
           // you must use QRScanner.openSettings() method to guide the user to the settings page
           // then they can grant the permission from there
         } else {
+          console.log("Camera permission was denied, don't know the reason");          
           // permission was denied, but not permanently. You can ask for permission again at a later time.
         }
       })
       .catch((e: any) => 
         console.log('Error is', e));
-    }
+  }
 
       //Submit request manually
       submitRequestManually() {

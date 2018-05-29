@@ -70,6 +70,7 @@ var SuccesspagePage = /** @class */ (function () {
     SuccesspagePage.prototype.ionViewDidLoad = function () {
         console.log('ionViewDidLoad SuccesspagePage');
     };
+    //Return to Rider dashboard page
     SuccesspagePage.prototype.goToDashboard = function () {
         console.log("I was succesful, going back to Dashboard");
         this.navCtrl.push("RiderdashboardPage");

@@ -114,11 +114,13 @@ var RiderdashboardPage = /** @class */ (function () {
             BranchCode: "",
             RiderEmail: ""
         };
+        //URLs to call on the REST Api
         this.getRiderRequestURL = 'http://gtmobile.gtbank.com/CourierAPI/api/Courier/get-all-rider-requests';
     }
     RiderdashboardPage.prototype.ionViewDidLoad = function () {
         this.getRiderDetailsAndRequest();
     };
+    //Get Rider details and get all requests
     RiderdashboardPage.prototype.getRiderDetailsAndRequest = function () {
         return __awaiter(this, void 0, void 0, function () {
             var _this = this;
@@ -162,6 +164,7 @@ var RiderdashboardPage = /** @class */ (function () {
             });
         });
     };
+    //Accept request 
     RiderdashboardPage.prototype.acceptRequest = function (reqDets) {
         var _this = this;
         this.sessionProvider.setStorage('requestDetails', JSON.stringify(reqDets)).then(function () {

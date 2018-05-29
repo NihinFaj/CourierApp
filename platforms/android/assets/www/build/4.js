@@ -69,6 +69,7 @@ var MailroomsuccesspagePage = /** @class */ (function () {
     }
     MailroomsuccesspagePage.prototype.ionViewDidLoad = function () {
     };
+    //Go back to accept request page for mailroom officer
     MailroomsuccesspagePage.prototype.goToDashboard = function () {
         console.log("Mailroom request was succesful, going back to Request Page");
         this.navCtrl.push("ViewrequestmailroomPage");

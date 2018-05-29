@@ -45,7 +45,7 @@ var ViewrequestPageModule = /** @class */ (function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ViewrequestPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(31);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_qr_scanner__ = __webpack_require__(212);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_qr_scanner__ = __webpack_require__(112);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_sessionprovider_sessionprovider__ = __webpack_require__(110);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_courierprovider_courierprovider__ = __webpack_require__(111);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -125,6 +125,7 @@ var ViewrequestPage = /** @class */ (function () {
         this.getUserName();
         this.getRequestDetails();
     };
+    //Get registered user details
     ViewrequestPage.prototype.getUserName = function () {
         return __awaiter(this, void 0, void 0, function () {
             var _a;
@@ -142,6 +143,7 @@ var ViewrequestPage = /** @class */ (function () {
             });
         });
     };
+    //Get selected request details
     ViewrequestPage.prototype.getRequestDetails = function () {
         return __awaiter(this, void 0, void 0, function () {
             var reqDet;
@@ -158,29 +160,52 @@ var ViewrequestPage = /** @class */ (function () {
             });
         });
     };
+    //Go back to previous page
     ViewrequestPage.prototype.goBack = function () {
         console.log("Go back to previous page");
         this.navCtrl.pop();
     };
+    //Open up QR Scanner
     ViewrequestPage.prototype.scanQR = function () {
         var _this = this;
+        console.log("Just entered scan QR Code function");
         this.qrScanner.prepare()
             .then(function (status) {
             if (status.authorized) {
+                console.log("Camera permisison was granted");
+                var ionApp = document.getElementsByTagName("ion-app")[0];
                 // camera permission was granted
                 // start scanning
+                console.log("About to start scanning");
                 var scanSub_1 = _this.qrScanner.scan().subscribe(function (text) {
-                    console.log('Scanned something', text);
+                    console.log('Scanned value is:', text);
+                    console.log(text);
                     _this.qrScanner.hide(); // hide camera preview
                     scanSub_1.unsubscribe(); // stop scanning
+                    ionApp.style.display = "block";
+                    _this.value.QrCode = text;
+                    // this.friendAddressInput.setFocus();
                 });
+                // show camera preview
+                ionApp.style.display = "none";
+                _this.qrScanner.show();
+                setTimeout(function () {
+                    ionApp.style.display = "block";
+                    scanSub_1.unsubscribe(); // stop scanning
+                    ionApp.style.display = "block";
+                    // context.friendAddressInput.setFocus();
+                    _this.qrScanner.hide();
+                }, 15000);
+                // wait for user to scan something, then the observable callback will be called
             }
             else if (status.denied) {
+                console.log("Camera permission was denied, please use OpenSettings to go grant access");
                 // camera permission was permanently denied
                 // you must use QRScanner.openSettings() method to guide the user to the settings page
                 // then they can grant the permission from there
             }
             else {
+                console.log("Camera permission was denied, don't know the reason");
                 // permission was denied, but not permanently. You can ask for permission again at a later time.
             }
         })
@@ -188,6 +213,7 @@ var ViewrequestPage = /** @class */ (function () {
             return console.log('Error is', e);
         });
     };
+    //Submit request manually    
     ViewrequestPage.prototype.submitRequestManually = function () {
         var _this = this;
         console.log("Gotten QRCode");
