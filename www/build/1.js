@@ -1,6 +1,6 @@
 webpackJsonp([1],{
 
-/***/ 322:
+/***/ 323:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -8,7 +8,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ViewrequestPageModule", function() { return ViewrequestPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(31);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__viewrequest__ = __webpack_require__(329);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__viewrequest__ = __webpack_require__(330);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -38,7 +38,7 @@ var ViewrequestPageModule = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 329:
+/***/ 330:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -174,8 +174,6 @@ var ViewrequestPage = /** @class */ (function () {
             if (status.authorized) {
                 console.log("Camera permisison was granted");
                 var ionApp = document.getElementsByTagName("ion-app")[0];
-                // camera permission was granted
-                // start scanning
                 console.log("About to start scanning");
                 var scanSub_1 = _this.qrScanner.scan().subscribe(function (text) {
                     console.log('Scanned value is:', text);
@@ -184,9 +182,7 @@ var ViewrequestPage = /** @class */ (function () {
                     scanSub_1.unsubscribe(); // stop scanning
                     ionApp.style.display = "block";
                     _this.value.QrCode = text;
-                    // this.friendAddressInput.setFocus();
                 });
-                // show camera preview
                 ionApp.style.display = "none";
                 _this.qrScanner.show();
                 setTimeout(function () {
